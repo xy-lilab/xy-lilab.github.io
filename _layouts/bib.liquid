@@ -1,5 +1,8 @@
 ---
 ---
+{%- comment -%} Website shows 2020+ only; pre-2020 entries stay in papers.bib (queryable / archival) but are not rendered. Entries may also opt out with web_show={false}. {%- endcomment -%}
+{% assign _web_year = entry.year | plus: 0 %}
+{% if _web_year >= 2020 and entry.web_show != "false" %}
 {% assign has_preview = false %}
 {% if site.enable_publication_thumbnails and entry.preview and page.hide_publication_thumbnails != true %}
   {% assign has_preview = true %}
@@ -152,3 +155,4 @@
     </div>
   </div>
 </li>
+{% endif %}
