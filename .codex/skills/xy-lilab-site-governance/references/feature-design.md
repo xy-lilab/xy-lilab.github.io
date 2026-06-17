@@ -93,7 +93,8 @@
 - `fetch-publications.yml` runs weekly: `scripts/fetch_publications.py` queries PubMed for new lab papers, classifies them via `scripts/classify_paper.py`, and appends BibTeX entries to `_bibliography/papers.bib`.
 - `update-citations.yml` runs weekly: `scripts/update_citations.py` refreshes `citation_count` from OpenAlex into `_data/citations.yml`.
 - The keyword-based classifier is the current source of truth for category / subcategory / publication-type / clinical / basic assignment. Manual edits to those fields in `papers.bib` should only override the classifier when the classifier is wrong; do not fight the automation by resetting fields each run.
-- Changes to the fetch cadence, the classification schema, or the source-of-truth for citation counts require a skill update first.
+- Impact factor + JCR quartile are sourced from a committed Clarivate JCR export (`scripts/data/jcr_2025.json`) via `scripts/jcr_lookup.py` — used by both the weekly fetch (new papers) and `scripts/refresh_impact_factors.py` (bulk re-run). When a new JCR table arrives: drop the `.xlsx`, run `build_jcr_data.py` to regenerate the JSON, then `refresh_impact_factors.py --apply`. The `cas_quartile` (中科院分区) field has been retired — never displayed, not maintained.
+- Changes to the fetch cadence, the classification schema, the impact-factor data source, or the source-of-truth for citation counts require a skill update first.
 
 ## Build and Deploy
 

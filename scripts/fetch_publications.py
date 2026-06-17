@@ -30,39 +30,19 @@ from classify_paper import (
 )
 
 try:
-    from impact_factor.core import Factor
-    _FACTOR = Factor()
+    import jcr_lookup
 except Exception:
-    _FACTOR = None
+    jcr_lookup = None
 
 
 def lookup_journal_metrics(issn, eissn, journal_name, journal_abbrev):
-    """Resolve JCR IF + JCR quartile + CAS quartile from ISSN / name / abbrev.
-
-    Uses local SQLite via impact_factor package (JCR 2024 / CAS 2025 data).
-    Returns dict with keys present only when non-empty: impact_factor, jcr_quartile, cas_quartile.
+    """Resolve JCR impact factor + quartile from the committed Clarivate JCR
+    data (scripts/data/jcr_2025.json, 2025 JIF), matching by ISSN then by
+    journal name / abbreviation. Returns {} when the journal is not in JCR.
     """
-    if _FACTOR is None:
+    if jcr_lookup is None:
         return {}
-    for query in (issn, eissn, journal_name, journal_abbrev):
-        if not query:
-            continue
-        try:
-            hits = _FACTOR.search(query)
-        except Exception:
-            continue
-        if hits:
-            h = hits[0]
-            out = {}
-            if h.get("factor") not in (None, "", "."):
-                out["impact_factor"] = h["factor"]
-            if h.get("jcr") not in (None, "", "."):
-                out["jcr_quartile"] = h["jcr"]
-            zky = h.get("zky")
-            if zky not in (None, "", "."):
-                out["cas_quartile"] = str(zky).replace(" ", "")  # "1 区" → "1区"
-            return out
-    return {}
+    return jcr_lookup.lookup(issn, eissn, journal_name, journal_abbrev)
 
 # ── Configuration ──
 
@@ -332,8 +312,6 @@ def format_bibtex_entry(paper):
         lines.append(f"  impact_factor={{{metrics['impact_factor']}}},")
     if "jcr_quartile" in metrics:
         lines.append(f"  jcr_quartile={{{metrics['jcr_quartile']}}},")
-    if "cas_quartile" in metrics:
-        lines.append(f"  cas_quartile={{{metrics['cas_quartile']}}},")
     # zero-padded IF for jekyll-scholar string-based sort (string sort == numeric sort)
     try:
         sort_if_val = f"{float(metrics.get('impact_factor', 0) or 0):06.2f}"
@@ -449,7 +427,6 @@ def main():
         metrics_bits = []
         if "impact_factor" in m: metrics_bits.append(f"IF {m['impact_factor']}")
         if "jcr_quartile" in m: metrics_bits.append(f"JCR {m['jcr_quartile']}")
-        if "cas_quartile" in m: metrics_bits.append(f"中科院 {m['cas_quartile']}")
         class_bits = []
         if c.get("category"): class_bits.append(c["category"])
         if c.get("subcategory") and c["subcategory"] != "other":

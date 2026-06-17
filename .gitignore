@@ -15,3 +15,7 @@ Gemfile.lock
 node_modules/
 vendor
 temp_cvs/
+# Source JCR tables (large); only the slim scripts/data/jcr_*.json is committed
+*.xlsx
+# papers.bib backups written by scripts/refresh_impact_factors.py
+_bibliography/*.bak-*

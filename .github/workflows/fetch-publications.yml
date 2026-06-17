@@ -22,8 +22,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
-        run: pip install impact_factor
+      # No pip deps: impact factors come from the committed JCR data file
+      # (scripts/data/jcr_2025.json) via scripts/jcr_lookup.py, stdlib only.
 
       - name: Run publication fetcher
         id: fetch
