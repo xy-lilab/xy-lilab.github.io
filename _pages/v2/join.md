@@ -12,7 +12,7 @@ The lab of Prof. Ji Li and Prof. Zhili Deng is recruiting at three levels. We wo
   <div class="v2-role">
     <div class="v2-role__head">
       <h3 class="v2-role__title">Associate / Assistant Researcher</h3>
-      <span class="v2-role__pay">¥300,000–500,000 pre-tax · established post</span>
+      <span class="v2-role__pay">¥300,000–500,000 pre-tax · tenured post</span>
     </div>
     <dl class="v2-role__meta">
       <dt>Who</dt>
@@ -22,7 +22,7 @@ The lab of Prof. Ji Li and Prof. Zhili Deng is recruiting at three levels. We wo
       <dt>Bar</dt>
       <dd>Meets Xiangya Hospital's research-faculty hiring standard — for example, at least two high-level papers as first or corresponding author (including co-first / co-corresponding), evaluated per the hospital's academic-score criteria (绩分).</dd>
       <dt>Package</dt>
-      <dd>Full hospital staff status; institutional achievement awards plus additional lab performance bonuses.</dd>
+      <dd>Directly employed as regular Xiangya Hospital staff; institutional achievement awards plus additional lab performance bonuses.</dd>
     </dl>
   </div>
   <div class="v2-role">
@@ -38,13 +38,13 @@ The lab of Prof. Ji Li and Prof. Zhili Deng is recruiting at three levels. We wo
       <dt>Bar</dt>
       <dd>At least one JCR Q1 paper as first or corresponding author and a demonstrated capacity for independent research; graduates of leading universities and institutes (in China or abroad) are preferred.</dd>
       <dt>Package</dt>
-      <dd>Managed as active hospital staff; research centers on the collaborating advisor's projects, funded primarily by the advisor. Institutional achievement awards plus additional lab performance bonuses.</dd>
+      <dd>Administered as a regular, directly-employed hospital staff member; research centers on the collaborating advisor's projects, funded primarily by the advisor. Institutional achievement awards plus additional lab performance bonuses.</dd>
     </dl>
   </div>
   <div class="v2-role">
     <div class="v2-role__head">
       <h3 class="v2-role__title">Research Technician</h3>
-      <span class="v2-role__pay">Full Xiangya Hospital staff benefits</span>
+      <span class="v2-role__pay">Direct-hire Xiangya Hospital staff</span>
     </div>
     <dl class="v2-role__meta">
       <dt>Who</dt>
