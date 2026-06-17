@@ -67,6 +67,7 @@
 - Positions track the lab's actual openings (faculty-scientist / PI-track, postdoc, technician); each block states eligibility and compensation. When the lab publishes salary figures, list them concretely.
 - Preserve an academically serious tone; avoid generic corporate recruiting language. Do not repeat role philosophy and application instructions in multiple sections.
 - Do NOT duplicate PI / co-PI bios or research-direction descriptions; link to People and Research instead.
+- Positions render as an editorial role list (`.v2-role*`): hairline-separated blocks, role title with the headline salary as a sans accent, then a label/value `<dl>` (Who / Background / Bar / Package). Do not revert to boxed `v2-utility-card`s — the per-role detail is too dense for the card grid.
 - Backed by `_pages/v2/join.md` and `_pages/v2/zh/join.md`.
 
 > History: `_pages/v2/careers.md` / `_pages/v2/zh/careers.md` were repurposed into the Contact page and have been renamed to `contact.md`. Recruiting now lives on the dedicated Join Us page above, not on Contact.

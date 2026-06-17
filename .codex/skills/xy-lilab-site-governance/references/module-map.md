@@ -48,7 +48,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - homepage layout used by both `/` (English) and `/zh/` (Chinese)
   - composes PI intro, research-direction narratives, selected publications, institutional anchor
 - `_layouts/v2-page.liquid`
-  - shared interior page frame (Clinical, Careers, Publications list, Projects index, and their `/zh/` mirrors)
+  - shared interior page frame (Clinical, Contact, Join Us, Publications list, Projects index, and their `/zh/` mirrors)
 - `_layouts/v2-people.liquid`
   - team page; renders PI block + role-grouped member listings from `_data/members.yml`
 - `_layouts/v2-member-detail.liquid`
@@ -74,9 +74,10 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - `_pages/v2.md`
   - English homepage, routed to `/`
 - `_pages/v2/`
-  - English interior pages: `research.md`, `publications.md`, `clinical.md`, `careers.md`, `people.md`, and `people/` member-detail stubs
+  - English interior pages: `research.md`, `publications.md`, `clinical.md`, `contact.md`, `join.md`, `people.md`, and `people/` member-detail stubs
+  - `contact.md` was renamed from `careers.md` (the file had been repurposed into the Contact page); `join.md` is the dedicated recruiting page
 - `_pages/v2/zh/`
-  - Chinese mirror: `index.md`, `research.md`, `publications.md`, `clinical.md`, `careers.md`, `people.md`, and `people/` member-detail stubs
+  - Chinese mirror: `index.md`, `research.md`, `publications.md`, `clinical.md`, `contact.md`, `join.md`, `people.md`, and `people/` member-detail stubs
 - `_pages/404.md`
   - not-found page
 
@@ -85,7 +86,8 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - `assets/css/v2-home.css`
   - homepage styles and the shared design-token layer: colors, typography, spacing, CSS custom properties used across all `v2` surfaces
 - `assets/css/v2-pages.css`
-  - interior-page styles (people, publications, clinical, careers, research, member detail, paper detail)
+  - interior-page styles (people, publications, clinical, contact, research, member detail, paper detail)
+  - includes the `.v2-role*` editorial role-list component used by the Join Us page (hairline-separated positions with a label/value `<dl>`, not boxed `v2-utility-card`s)
 - `assets/css/v2-print.css`
   - print stylesheet
 - `assets/css/academicons.min.css`

@@ -17,7 +17,7 @@ Xiangya Hospital, Central South University<br>
 87 Xiangya Road, Kaifu District<br>
 Changsha, Hunan, China 410008
 
-<a href="https://maps.apple.com/?ll=28.2028,112.9690&q=Xiangya%20Hospital" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-location-dot"></i> View on Map</a>
+<a href="https://maps.apple.com/?q=中南大学湘雅医院皮肤病医院" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-location-dot"></i> View on Map</a>
 
 {% if site.data.socials.github or site.data.socials.researchgate %}
 ### Online

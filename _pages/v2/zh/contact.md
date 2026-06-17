@@ -17,7 +17,7 @@ show_lead: false
 中南大学湘雅医院皮肤科<br>
 湖南省长沙市开福区湘雅路87号 410008
 
-<a href="https://maps.apple.com/?ll=28.2028,112.9690&q=中南大学湘雅医院" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-location-dot"></i> 查看地图</a>
+<a href="https://maps.apple.com/?q=中南大学湘雅医院皮肤病医院" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-location-dot"></i> 查看地图</a>
 
 {% if site.data.socials.github or site.data.socials.researchgate %}
 ### 学术主页
