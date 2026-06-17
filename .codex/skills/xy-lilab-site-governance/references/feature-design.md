@@ -54,15 +54,22 @@
 - Prefer concrete research/clinical interfaces — cohorts, sample collections, disease focus, therapeutic questions, trial routes — over abstract language about translation.
 - Usually resolves to: current interfaces + one contact / collaboration route.
 
-### Careers (`/careers/` and `/zh/careers/`)
+### Contact (`/contact/` and `/zh/contact/`)
 
-- Support recruiting with clear role expectations and lab environment signals.
-- Preserve an academically serious tone; avoid generic corporate recruiting language.
-- Read as a direct recruiting note:
-  - who should apply
-  - how to apply
-  - one clear email / contact route
-- Avoid repeating role philosophy and application instructions in multiple sections.
+- Lightweight contact reference: lab emails, postal address (Department of Dermatology, Xiangya Hospital), map link, and online profiles.
+- Keep it a fast lookup surface; do not let it absorb recruiting content. Point applicants to Join Us instead.
+- Backed by `_pages/v2/contact.md` and `_pages/v2/zh/contact.md`.
+
+### Join Us (`/join/` and `/zh/join/`)
+
+- Dedicated recruiting page — English "Join Us" / Chinese "加入我们" — surfaced in primary navigation.
+- Reads as a direct recruiting note: open positions, who should apply, how to apply, one clear application route.
+- Positions track the lab's actual openings (faculty-scientist / PI-track, postdoc, technician); each block states eligibility and compensation. When the lab publishes salary figures, list them concretely.
+- Preserve an academically serious tone; avoid generic corporate recruiting language. Do not repeat role philosophy and application instructions in multiple sections.
+- Do NOT duplicate PI / co-PI bios or research-direction descriptions; link to People and Research instead.
+- Backed by `_pages/v2/join.md` and `_pages/v2/zh/join.md`.
+
+> History: `_pages/v2/careers.md` / `_pages/v2/zh/careers.md` were repurposed into the Contact page and have been renamed to `contact.md`. Recruiting now lives on the dedicated Join Us page above, not on Contact.
 
 ### Projects (`/research/` and `/zh/research/`)
 
@@ -75,7 +82,8 @@
 
 ## Navigation
 
-- Primary navigation is small and stable across both languages.
+- Primary navigation is small and stable across both languages. Current order: Home · Research · Publications · People · Clinical · Join Us · Contact (with the language switcher).
+- Navigation labels are hard-coded in `_includes/nav.liquid` (the `nav:` keys in `_data/i18n/*.yml` are legacy and currently unused).
 - The language switcher must be visible on every page and must send the user to the semantically matching page in the other language, not to the `/` or `/zh/` root.
 - Navigation taxonomy changes require a skill update first.
 
