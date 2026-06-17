@@ -6,7 +6,7 @@ description: Open positions in the Li Lab — faculty-scientist, postdoctoral, a
 show_lead: false
 ---
 
-The lab of Prof. Ji Li and Prof. Zhili Deng (Department of Dermatology, Xiangya Hospital, Central South University; Hunan Key Laboratory of Aging Biology) is recruiting at three levels. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
+The lab of Prof. Ji Li and Prof. Zhili Deng is recruiting at three levels. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
 
 <div class="v2-role-list">
   <div class="v2-role">
