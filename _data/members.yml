@@ -161,11 +161,19 @@
   sort_key: "16"
   name_en: Wenqin Xiao
   role: basic_researcher
-  title: 研究人员
-  title_en: Researcher
+  title: 助理研究员、医师、硕士生导师
+  title_en: Assistant Research Fellow, Physician, Master's Supervisor
   photo: /assets/img/members/placeholder.png
   department: 皮肤科
   department_en: Department of Dermatology
+  bio: >
+    Research focus: clinical, basic, and translational research on rosacea.<br><br>
+    Published 9 SCI papers as first/corresponding author in <em>Cell</em>, <em>JCI Insight</em>, <em>Aging Cell</em>, <em>JID</em>, etc.<br><br>
+    Principal investigator of an NSFC Young Scientists Fund and a Hunan Provincial Natural Science Foundation Youth project; selected for the National Postdoctoral Researcher Funding Program.
+  bio_zh: >
+    主要从事玫瑰痤疮的临床、基础与转化研究。<br><br>
+    以第一/通讯作者在 <em>Cell</em>、<em>JCI Insight</em>、<em>Aging Cell</em>、<em>JID</em> 等杂志发表 SCI 论文 9 篇。<br><br>
+    主持国家自然科学基金青年项目、湖南省自然科学基金青年项目，入选国家资助博士后研究人员计划。
 
 - name: 谢红付
   sort_key: "01"
