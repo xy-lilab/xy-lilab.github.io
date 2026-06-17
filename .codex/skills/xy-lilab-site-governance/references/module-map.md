@@ -108,6 +108,8 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - keyword-based category / subcategory / publication-type / clinical / basic classifier used by `fetch_publications.py`
 - `scripts/update_citations.py`
   - refreshes citation counts from OpenAlex into `_data/citations.yml`
+- `scripts/refresh_impact_factors.py`
+  - manual (not scheduled): refreshes `impact_factor` / `jcr_quartile` / `sort_if` in `papers.bib` from a Clarivate JCR `.xlsx` export. Matches journals by name/abbrev (the bib stores no ISSN); takes best quartile across categories; leaves `cas_quartile` untouched (JCR-only source). Run on dry-run first, then `--apply` (writes a `.bak`).
 - `scripts/fetch_previews.py`
   - fetches publication thumbnail images into `assets/img/publication_preview/`
 
