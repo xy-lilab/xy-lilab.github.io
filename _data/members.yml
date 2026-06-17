@@ -118,11 +118,19 @@
   sort_key: "13"
   name_en: Li Yang
   role: basic_researcher
-  title: 研究人员
-  title_en: Researcher
-  photo: /assets/img/members/placeholder.png
+  title: 助理研究员、博士
+  title_en: Assistant Research Fellow, PhD
+  photo: /assets/img/members/yl.jpg
   department: 皮肤科
   department_en: Department of Dermatology
+  bio: >
+    PhD; completed M.Sc. and Ph.D. at the Beijing Institute of Genomics, Chinese Academy of Sciences. Skilled in data mining and multi-omics integration across genomics, transcriptomics, proteomics, methylomics, and single-cell transcriptomics.<br><br>
+    Research focus: bioinformatics of disfiguring skin diseases and androgenetic alopecia — including the pathogenesis of rosacea and androgenetic alopecia, such as the role of hair-follicle stem-cell fate decisions in androgenetic alopecia.<br><br>
+    Published 7 SCI papers as first or co-first author in <em>Nucleic Acids Research</em>, <em>Nature Communications</em>, <em>Genomics, Proteomics &amp; Bioinformatics</em>, <em>Pharmacological Research</em>, etc. Principal investigator of an NSFC Young Scientists Fund and a Hunan Provincial Natural Science Foundation Youth project.
+  bio_zh: >
+    博士，硕博毕业于中国科学院北京基因组研究所，熟练掌握基因组、转录组、蛋白质组、甲基化组及单细胞转录组的信息挖掘与多组学整合技术。<br><br>
+    研究方向：损容性皮肤病与雄激素源性秃发的生物信息学研究，包括玫瑰痤疮与雄激素源性秃发的发病机制（如毛囊干细胞命运决定在雄激素源性秃发中的作用）。<br><br>
+    以第一/共同第一作者在 <em>Nucleic Acids Research</em>、<em>Nature Communications</em>、<em>Genomics, Proteomics &amp; Bioinformatics</em>、<em>Pharmacological Research</em> 等期刊发表 SCI 论文 7 篇。主持国家自然科学基金青年项目 1 项、湖南省自然科学基金青年项目 1 项。
 
 - name: 初艳吉
   sort_key: "14"
