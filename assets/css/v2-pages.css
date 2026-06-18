@@ -209,6 +209,12 @@ body.v2-body {
   padding-bottom: 0.3rem;     /* a distinct mid tier marked by a hairline rule, */
   border-bottom: 1px solid var(--v2-line);  /* clearly below the red-underlined header */
 }
+/* The track header's accent underline already caps the list, so drop the
+   first role's top hairline — otherwise it doubles up under the header. */
+.v2-page.join .v2-role-list .v2-role:first-child {
+  border-top: none;
+  padding-top: 0.6rem;
+}
 
 /* ── Projects / Research direction entries ── */
 .v2-program-entry {
