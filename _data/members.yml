@@ -89,11 +89,22 @@
   sort_key: "11"
   name_en: Mengting Chen
   role: basic_researcher
-  title: 研究人员
-  title_en: Researcher
-  photo: /assets/img/members/placeholder.png
+  title: 副研究员、医师
+  title_en: Associate Research Fellow, Physician
+  photo: /assets/img/members/cmt.jpg
   department: 皮肤科
   department_en: Department of Dermatology
+  email: cmt0702@csu.edu.cn
+  bio: >
+    Associate Research Fellow and physician in the Department of Dermatology.<br><br>
+    Research focus: basic and translational research on inflammatory skin diseases and skin aging.<br><br>
+    Principal investigator of 1 National Natural Science Foundation of China project.<br><br>
+    Published 18 SCI papers as co-first author and/or corresponding author, mainly in <em>Nature Communications</em>, <em>Journal of Biomedical Science</em>, and other international journals.
+  bio_zh: >
+    中南大学湘雅医院皮肤科副研究员、医师。<br><br>
+    研究方向：炎症性皮肤病和皮肤衰老的基础及转化研究。<br><br>
+    主持国家自然科学基金委项目 1 项。<br><br>
+    以共同第一作者/通讯作者发表 SCI 论文 18 篇，主要发表于 <em>Nature Communications</em>、<em>Journal of Biomedical Science</em> 等国际期刊。
 
 - name: 李果
   sort_key: "12"
