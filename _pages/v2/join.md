@@ -8,7 +8,10 @@ show_lead: false
 
 The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-scientists, postdocs, and technicians, as well as master's and doctoral students. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
 
-### Open positions
+<div class="v2-section__intro">
+  <h2>Open positions</h2>
+  <p>Salaried, direct-hire roles for faculty-scientists, postdocs, and technicians.</p>
+</div>
 
 <div class="v2-role-list">
   <div class="v2-role">
@@ -65,7 +68,6 @@ The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-
 
 - **Faculty-track candidates** who meet the criteria for the national "Four Young Talents" programs or Xiangya Hospital's "Feifan Talent Leadership Plan" are encouraged to apply. For such candidates the platform, funding, and package are negotiable, with full institutional support for the relevant talent applications.
 - All roles are anchored in national- and provincial-level key research platforms, with ample funding and well-equipped facilities.
-- Achievement awards follow the hospital's official policy and are supplemented by the lab's own performance bonuses.
 
 ### How to apply
 
@@ -79,9 +81,12 @@ Please include:
 
 Use the email subject line **"Position applied for + Your name"**. This posting is open on a rolling basis and applications are accepted year-round; all personal information is kept strictly confidential.
 
-### Graduate students
+<hr>
 
-We supervise master's and doctoral students and welcome enquiries from prospective candidates who want to train where the clinic meets the bench.
+<div class="v2-section__intro">
+  <h2>Graduate students</h2>
+  <p>Master's and doctoral admissions for candidates who want to train where the clinic meets the bench.</p>
+</div>
 
 <div class="v2-role-list">
   <div class="v2-role">
@@ -112,7 +117,6 @@ We supervise master's and doctoral students and welcome enquiries from prospecti
 
 Prospective students: there are no special prerequisites beyond the eligibility above — send your CV to <a href="mailto:liji_xy@csu.edu.cn">liji_xy@csu.edu.cn</a> or <a href="mailto:dengzhili@csu.edu.cn">dengzhili@csu.edu.cn</a> to start a conversation. Formal enrolment follows Central South University's annual graduate-admissions process.
 
-### More about the lab
+<hr>
 
-- Meet the principal investigators and the team on the [People page]({{ '/people/' | relative_url }}).
-- Explore our three research directions — skin aging, hair, and inflammatory skin disease — on the [Research page]({{ '/research/' | relative_url }}).
+More about the lab: meet the principal investigators and team on the [People page]({{ '/people/' | relative_url }}), or explore our three research directions — skin aging, hair, and inflammatory skin disease — on the [Research page]({{ '/research/' | relative_url }}).
