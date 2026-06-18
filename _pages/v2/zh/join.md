@@ -3,11 +3,13 @@ layout: v2-page
 permalink: /zh/join/
 title: 加入我们
 lang: zh
-description: Li Lab 招聘——中南大学湘雅医院皮肤科诚聘副研究员/助理研究员、博士后、技术员。
+description: Li Lab 招聘与研究生招生——中南大学湘雅医院皮肤科诚聘副研究员/助理研究员、博士后、技术员，并招收硕士、博士研究生。
 show_lead: false
 ---
 
-中南大学湘雅医院皮肤科李吉、邓智利教授课题组（衰老生物学湖南省重点实验室）现面向三个层次诚聘人才。课题组立足临床皮肤病学与分子生物学的交叉前沿，期待品行端正、热爱科研、富有事业心、责任心强且具良好协作精神的同道加入。
+中南大学湘雅医院皮肤科李吉、邓智利教授课题组（衰老生物学湖南省重点实验室）现面向各层次招贤纳才——既招聘科研、博士后与技术人才，也招收硕士、博士研究生。课题组立足临床皮肤病学与分子生物学的交叉前沿，期待品行端正、热爱科研、富有事业心、责任心强且具良好协作精神的同道加入。
+
+### 招聘岗位
 
 <div class="v2-role-list">
   <div class="v2-role">
@@ -77,6 +79,39 @@ show_lead: false
 - 两封专家推荐信，其中一封须由博士导师出具
 
 邮件主题请统一注明 **“应聘岗位 + 本人姓名”**。本招聘信息长期有效，全年接受报名；所有个人信息将严格保密。
+
+### 研究生招生
+
+课题组招收硕士与博士研究生，欢迎有志于在临床与基础交叉领域深造的同学联系报考。
+
+<div class="v2-role-list">
+  <div class="v2-role">
+    <div class="v2-role__head">
+      <h3 class="v2-role__title">硕士研究生</h3>
+      <span class="v2-role__pay">限临床医学专业</span>
+    </div>
+    <dl class="v2-role__meta">
+      <dt>专业要求</dt>
+      <dd>硕士研究生招生仅面向临床医学专业。</dd>
+      <dt>期待</dt>
+      <dd>对皮肤病学研究有浓厚兴趣，愿意打通临床问题与实验研究。</dd>
+    </dl>
+  </div>
+  <div class="v2-role">
+    <div class="v2-role__head">
+      <h3 class="v2-role__title">博士研究生</h3>
+      <span class="v2-role__pay">生物医学相关专业</span>
+    </div>
+    <dl class="v2-role__meta">
+      <dt>专业要求</dt>
+      <dd>面向生物医学及相关学科——分子生物学、细胞生物学、免疫学、生物信息学、药学等专业均可报考。</dd>
+      <dt>期待</dt>
+      <dd>有志于独立开展课题研究，并推动研究问题向前一步。</dd>
+    </dl>
+  </div>
+</div>
+
+有意报考的同学：除上述专业要求外没有特别门槛，欢迎将个人简历发送至 <a href="mailto:liji_xy@csu.edu.cn">liji_xy@csu.edu.cn</a> 或 <a href="mailto:dengzhili@csu.edu.cn">dengzhili@csu.edu.cn</a> 与我们联系。正式录取以中南大学当年研究生招生流程为准。
 
 ### 了解课题组
 

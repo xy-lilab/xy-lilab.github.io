@@ -64,10 +64,12 @@
 
 - Dedicated recruiting page — English "Join Us" / Chinese "加入我们" — surfaced in primary navigation.
 - Reads as a direct recruiting note: open positions, who should apply, how to apply, one clear application route.
-- Positions track the lab's actual openings (faculty-scientist / PI-track, postdoc, technician); each block states eligibility and compensation. When the lab publishes salary figures, list them concretely.
+- The page covers two distinct recruiting tracks, kept as separate clearly-headed sections so employment and degree-seeking applicants are not conflated:
+  - **Paid staff / faculty positions (招聘)** — the lab's actual openings (faculty-scientist / PI-track, postdoc, technician); each block states eligibility and compensation. When the lab publishes salary figures, list them concretely. This track carries the formal application instructions (materials, recommendation letters).
+  - **Graduate-student admissions (招生)** — master's and doctoral students. Per Xiangya Hospital policy, master's admission is restricted to clinical-medicine majors; doctoral admission is open to biomedicine-related fields. State these major constraints explicitly. There are no special prerequisites beyond the major requirement; keep the student application route light (email a CV to the PIs) and note that formal enrolment follows Central South University's annual graduate-admissions process. Do not impose the staff track's publication/recommendation-letter requirements on students.
 - Preserve an academically serious tone; avoid generic corporate recruiting language. Do not repeat role philosophy and application instructions in multiple sections.
 - Do NOT duplicate PI / co-PI bios or research-direction descriptions; link to People and Research instead.
-- Positions render as an editorial role list (`.v2-role*`): hairline-separated blocks, role title with the headline salary as a sans accent, then a label/value `<dl>` (Who / Background / Bar / Package). Do not revert to boxed `v2-utility-card`s — the per-role detail is too dense for the card grid.
+- Both tracks render as the same editorial role list (`.v2-role*`): hairline-separated blocks, role title with a sans accent (`.v2-role__pay` — the headline salary for staff positions; the required major for graduate roles), then a label/value `<dl>`. Staff blocks use Who / Background / Bar / Package; graduate blocks use a lighter Eligibility / Looking-for pair. Do not revert to boxed `v2-utility-card`s — the per-role detail is too dense for the card grid.
 - Backed by `_pages/v2/join.md` and `_pages/v2/zh/join.md`.
 
 > History: `_pages/v2/careers.md` / `_pages/v2/zh/careers.md` were repurposed into the Contact page and have been renamed to `contact.md`. Recruiting now lives on the dedicated Join Us page above, not on Contact.

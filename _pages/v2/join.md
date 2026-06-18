@@ -2,11 +2,13 @@
 layout: v2-page
 permalink: /join/
 title: Join Us
-description: Open positions in the Li Lab — faculty-scientist, postdoctoral, and technician roles at the Department of Dermatology, Xiangya Hospital, Central South University.
+description: Open positions and graduate admissions in the Li Lab — faculty-scientist, postdoctoral, and technician roles plus master's and doctoral recruitment at the Department of Dermatology, Xiangya Hospital, Central South University.
 show_lead: false
 ---
 
-The lab of Prof. Ji Li and Prof. Zhili Deng is recruiting at three levels. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
+The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-scientists, postdocs, and technicians, as well as master's and doctoral students. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
+
+### Open positions
 
 <div class="v2-role-list">
   <div class="v2-role">
@@ -76,6 +78,39 @@ Please include:
 - Two recommendation letters from referees, one of which must be from your PhD advisor
 
 Use the email subject line **"Position applied for + Your name"**. This posting is open on a rolling basis and applications are accepted year-round; all personal information is kept strictly confidential.
+
+### Graduate students
+
+We supervise master's and doctoral students and welcome enquiries from prospective candidates who want to train where the clinic meets the bench.
+
+<div class="v2-role-list">
+  <div class="v2-role">
+    <div class="v2-role__head">
+      <h3 class="v2-role__title">Master's students (M.S.)</h3>
+      <span class="v2-role__pay">Clinical medicine majors only</span>
+    </div>
+    <dl class="v2-role__meta">
+      <dt>Eligibility</dt>
+      <dd>Master's admission is open only to applicants with a clinical medicine background.</dd>
+      <dt>Looking for</dt>
+      <dd>A genuine interest in dermatology research and the curiosity to connect clinical questions with laboratory work.</dd>
+    </dl>
+  </div>
+  <div class="v2-role">
+    <div class="v2-role__head">
+      <h3 class="v2-role__title">Doctoral students (Ph.D.)</h3>
+      <span class="v2-role__pay">Biomedicine &amp; related fields</span>
+    </div>
+    <dl class="v2-role__meta">
+      <dt>Eligibility</dt>
+      <dd>Open to applicants from the biomedical sciences and related disciplines — molecular biology, cell biology, immunology, bioinformatics, pharmacy, and similar fields.</dd>
+      <dt>Looking for</dt>
+      <dd>A drive to lead an independent project and to publish work that moves a research question forward.</dd>
+    </dl>
+  </div>
+</div>
+
+Prospective students: there are no special prerequisites beyond the eligibility above — send your CV to <a href="mailto:liji_xy@csu.edu.cn">liji_xy@csu.edu.cn</a> or <a href="mailto:dengzhili@csu.edu.cn">dengzhili@csu.edu.cn</a> to start a conversation. Formal enrolment follows Central South University's annual graduate-admissions process.
 
 ### More about the lab
 
