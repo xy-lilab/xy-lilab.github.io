@@ -51,6 +51,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - composes PI intro, research-direction narratives, selected publications, institutional anchor
 - `_layouts/v2-page.liquid`
   - shared interior page frame (Clinical, Contact, Join Us, Publications list, Projects index, and their `/zh/` mirrors)
+  - emits an optional `{{ page.page_class }}` modifier on the `.v2-page` wrapper, so a single page can opt into scoped CSS (e.g. `page_class: join` keys the Join Us heading-hierarchy block in `v2-pages.css`). Prefer this over editing shared heading rules when a tweak should not leak to other interior pages.
 - `_layouts/v2-people.liquid`
   - team page; renders PI block + role-grouped member listings from `_data/members.yml`
 - `_layouts/v2-member-detail.liquid`

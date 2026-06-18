@@ -2,6 +2,7 @@
 layout: v2-page
 permalink: /join/
 title: Join Us
+page_class: join
 description: Open positions and graduate admissions in the Li Lab — faculty-scientist, postdoctoral, and technician roles plus master's and doctoral recruitment at the Department of Dermatology, Xiangya Hospital, Central South University.
 show_lead: false
 ---
@@ -10,7 +11,6 @@ The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-
 
 <div class="v2-section__intro">
   <h2>Open positions</h2>
-  <p>Salaried, direct-hire roles for faculty-scientists, postdocs, and technicians.</p>
 </div>
 
 <div class="v2-role-list">
@@ -85,7 +85,6 @@ Use the email subject line **"Position applied for + Your name"**. This posting 
 
 <div class="v2-section__intro">
   <h2>Graduate students</h2>
-  <p>Master's and doctoral admissions for candidates who want to train where the clinic meets the bench.</p>
 </div>
 
 <div class="v2-role-list">

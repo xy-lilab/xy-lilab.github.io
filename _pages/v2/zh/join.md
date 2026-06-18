@@ -3,6 +3,7 @@ layout: v2-page
 permalink: /zh/join/
 title: 加入我们
 lang: zh
+page_class: join
 description: Li Lab 招聘与研究生招生——中南大学湘雅医院皮肤科诚聘副研究员/助理研究员、博士后、技术员，并招收硕士、博士研究生。
 show_lead: false
 ---
@@ -11,7 +12,6 @@ show_lead: false
 
 <div class="v2-section__intro">
   <h2>招聘岗位</h2>
-  <p>招聘科研岗、博士后与技术员，均为医院正式聘用岗位。</p>
 </div>
 
 <div class="v2-role-list">
@@ -86,7 +86,6 @@ show_lead: false
 
 <div class="v2-section__intro">
   <h2>研究生招生</h2>
-  <p>招收硕士与博士研究生，欢迎有志于临床与基础交叉研究的同学报考。</p>
 </div>
 
 <div class="v2-role-list">
