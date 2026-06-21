@@ -247,6 +247,33 @@ body.v2-body {
   padding-top: 0.6rem;
 }
 
+/* ── Contact page: contact details beside the team photo ──
+   Scoped via `page_class: contact`. The photo is wide and short, so it takes
+   the larger column and top-aligns with the details (its top meets the first
+   heading) rather than floating centered against the taller details column. */
+.v2-page.contact .v2-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+.v2-page.contact .v2-contact-info > h3:first-child {
+  margin-top: 0;
+}
+.v2-page.contact .v2-contact-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--v2-radius);
+}
+@media (max-width: 768px) {
+  .v2-page.contact .v2-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 /* ── Projects / Research direction entries ── */
 .v2-program-entry {
   padding: 0.5rem 0;
