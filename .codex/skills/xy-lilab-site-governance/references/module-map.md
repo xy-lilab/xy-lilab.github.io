@@ -90,7 +90,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - homepage styles and the shared design-token layer: colors, typography, spacing, CSS custom properties used across all `v2` surfaces
 - `assets/css/v2-pages.css`
   - interior-page styles (people, publications, clinical, contact, research, member detail, paper detail)
-  - includes the `.v2-role*` editorial role-list component used by the Join Us page (hairline-separated positions with a label/value `<dl>`, not boxed `v2-utility-card`s)
+  - includes the `.v2-role*` editorial role-list component used by the Join Us page (hairline-separated positions with a label/value `<dl>`, not boxed `v2-utility-card`s), and the `.v2-join-grid` / `.v2-join-col` two-column layout that places the 招聘 and 招生 tracks side by side (stacking ≤768px), both scoped under `page_class: join`
 - `assets/css/v2-print.css`
   - print stylesheet
 - `assets/css/academicons.min.css`
