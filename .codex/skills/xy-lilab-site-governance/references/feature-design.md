@@ -58,6 +58,7 @@
 
 - Lightweight contact reference: lab emails, postal address (Department of Dermatology, Xiangya Hospital), map link, and online profiles.
 - Keep it a fast lookup surface; do not let it absorb recruiting content. Point applicants to Join Us instead.
+- The contact details sit on the left beside a team group photo on the right (`page_class: contact` keys a scoped `.v2-contact-grid`; stacks to one column ≤768px, photo below the details). The photo is the only visual flourish here — keep it a single image (`assets/img/lab_team.jpg`), not a gallery, so the page stays a fast lookup surface. Like the Join page, the details column is authored as literal HTML inside the grid's raw-HTML block (Kramdown does not parse Markdown there); Liquid still runs (the Online block is conditional on `_data/socials.yml`).
 - Backed by `_pages/v2/contact.md` and `_pages/v2/zh/contact.md`.
 
 ### Join Us (`/join/` and `/zh/join/`)
