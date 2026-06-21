@@ -84,6 +84,7 @@ body.v2-body {
 .v2-page__content a { color: var(--v2-accent); }
 .v2-page__content a:hover { color: var(--v2-accent-hover); }
 .v2-page__content strong { color: var(--v2-ink); }
+.v2-page__content a strong { color: inherit; } /* bold inside a link keeps the link's accent color, not ink */
 .v2-page__content hr {
   border: none;
   border-top: 1px solid var(--v2-line);
