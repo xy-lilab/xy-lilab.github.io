@@ -34,7 +34,7 @@
 
 - Publications are a core credibility feature, not a secondary archive.
 - The list page supports multi-dimensional filtering driven by bib fields: research direction (`category`), subtype (`subcategory`), paper type (`publication_type`), and clinical/basic flags.
-- The list page should support scanning by title, authors, venue, year, and preview thumbnail.
+- The list is text-only — scan by title, authors, venue, and year. Preview thumbnails are intentionally off (`hide_publication_thumbnails: true` on both publications pages): most entries lack an image, so the featured block hides thumbs via CSS and the complete list matches. Citation counts live in `_data/citations.yml` but are hidden site-wide via CSS (`.bib-citation-badge { display: none }`), so they are not a visible list field.
 - Detail pages should stay reading-first: title, authors, venue / year / DOI, outward publisher link, abstract, and the graphical abstract when available.
 - Do not introduce card-heavy metadata dashboards on detail pages.
 - Any change to the filter facets, list rendering, or detail layout requires a skill update first.
@@ -104,7 +104,7 @@
 
 ## Build and Deploy
 
-- `deploy.yml` runs on push to main: builds Jekyll, caches ImageMagick WebP output and apt-installed ImageMagick, deploys to `gh-pages`.
+- `deploy.yml` runs on push/PR to main, manual dispatch, and on `workflow_run` completion of `Fetch new publications` (the weekly paper fetch). A lightweight `gate` job builds only when that run produced a new commit (branch tip != `workflow_run.head_sha`), so empty fetch weeks do not redeploy. `Update citation counts` deliberately does NOT trigger deploy — citation counts are hidden site-wide via CSS, so rebuilding for them has no visible effect; refreshed counts ride along on the next fetch/human deploy. The build itself: Jekyll build, caches ImageMagick WebP output and apt-installed ImageMagick, deploys to `gh-pages`.
 - First build generates several hundred WebP thumbnails via `jekyll-imagemagick`; subsequent builds reuse the WebP cache.
 - Do not bypass `jekyll-imagemagick` for publication previews — add the source image to `assets/img/publication_preview/` and let the plugin generate responsive WebP.
 

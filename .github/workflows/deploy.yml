@@ -9,13 +9,14 @@ on:
     branches:
       - master
       - main
-  # Rebuild after the scheduled automation pushes new data. Those workflows push
+  # Rebuild after the weekly paper fetch pushes new entries. That workflow pushes
   # with the default GITHUB_TOKEN, and GitHub does not surface GITHUB_TOKEN pushes
-  # as `push` events (recursion guard), so we chain off their completion instead.
+  # as `push` events (recursion guard), so we chain off its completion instead.
+  # `Update citation counts` is intentionally excluded — citation counts are hidden
+  # site-wide via CSS, so rebuilding for them has no visible effect.
   workflow_run:
     workflows:
       - "Fetch new publications"
-      - "Update citation counts"
     types:
       - completed
   workflow_dispatch:

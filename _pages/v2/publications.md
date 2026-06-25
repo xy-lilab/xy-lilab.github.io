@@ -4,6 +4,7 @@ permalink: /publications/
 title: Our Publications
 description: Selected and complete publications from the Li Lab.
 show_lead: false
+hide_publication_thumbnails: true
 ---
 <div class="v2-section">
   <div class="v2-section__intro">

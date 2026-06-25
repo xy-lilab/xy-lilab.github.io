@@ -4,6 +4,7 @@ permalink: /zh/publications/
 title: 论文发表
 lang: zh
 show_lead: false
+hide_publication_thumbnails: true
 ---
 <div class="v2-section">
   <div class="v2-section__intro">
