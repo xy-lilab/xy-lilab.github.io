@@ -14,6 +14,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - Jekyll 4.4 and plugin pinning
 - `.github/workflows/deploy.yml`
   - builds the Jekyll site, caches ImageMagick WebP output and apt-installed ImageMagick, deploys to `gh-pages`
+  - triggers on push/PR to `main`, manual dispatch, and on `workflow_run` completion of the two scheduled automation workflows (`Fetch new publications`, `Update citation counts`). A lightweight `gate` job skips the build when an automation run produced no new commit (it compares the branch tip to `workflow_run.head_sha`), so empty weekly runs do not redeploy. This chaining exists because those workflows push with the default `GITHUB_TOKEN`, and GitHub deliberately does not surface `GITHUB_TOKEN` pushes as `push` events (recursion guard) — so without it, auto-fetched papers and refreshed citations only reach the live site on the next human push.
 - `.github/workflows/fetch-publications.yml`
   - weekly PubMed → `papers.bib` append with auto-classification
 - `.github/workflows/update-citations.yml`
