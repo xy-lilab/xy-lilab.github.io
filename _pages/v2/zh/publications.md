@@ -24,6 +24,6 @@ hide_publication_thumbnails: true
   </div>
   {% include bib_search.liquid %}
   <div class="publications">
-    {% bibliography %}
+    {% bibliography --query @*[year>=2020] %}
   </div>
 </div>
