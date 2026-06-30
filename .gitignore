@@ -19,3 +19,5 @@ temp_cvs/
 *.xlsx
 # papers.bib backups written by scripts/refresh_impact_factors.py
 _bibliography/*.bak-*
+# 本地工作清单(论文库改动记录),不纳入仓库
+/论文库_改动清单_*.md
