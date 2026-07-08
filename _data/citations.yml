@@ -3,7 +3,7 @@
 
 2023scichinali_biomarke:
   doi: "10.1007/s11427-023-2305-0"
-  citations: 360
+  citations: 362
 
 myung2013jinvestder_epitheli:
   doi: "10.1038/jid.2012.230"
@@ -13,21 +13,21 @@ bruzzese2011jcellphysi_hdac:
   doi: "10.1002/jcp.22574"
   citations: 140
 
+piquero-casals2021dermatolth_urea:
+  doi: "10.1007/s13555-021-00611-y"
+  citations: 113
+
 deng2021embomolmed:
   doi: "10.15252/emmm.202013560"
   citations: 111
 
-piquero-casals2021dermatolth_urea:
-  doi: "10.1007/s13555-021-00611-y"
-  citations: 111
-
 deng2022jid_ar:
   doi: "10.1016/j.jid.2022.01.003"
-  citations: 91
+  citations: 93
 
 zhang2021frontimmunol:
   doi: "10.3389/fimmu.2021.756550"
-  citations: 87
+  citations: 91
 
 yuan2019biomedphar_artemisi:
   doi: "10.1016/j.biopha.2019.109181"
@@ -35,7 +35,7 @@ yuan2019biomedphar_artemisi:
 
 liu2022devcell:
   doi: "10.1016/j.devcel.2022.06.005"
-  citations: 83
+  citations: 84
 
 li2019intimmunop_tranexam:
   doi: "10.1016/j.intimp.2018.12.031"
@@ -47,11 +47,11 @@ li2010australasj_aquapori:
 
 zhou2023jeadv:
   doi: "10.1111/jdv.18725"
-  citations: 72
+  citations: 73
 
 li2020embj:
   doi: "10.15252/embj.2019104365"
-  citations: 71
+  citations: 72
 
 jian2011steroids_diethyls:
   doi: "10.1016/j.steroids.2011.06.008"
@@ -185,25 +185,25 @@ mao2024eurheartjcar:
   doi: "10.1093/ehjci/jeae126"
   citations: 36
 
-hu2022heliyon:
-  doi: "10.1016/j.heliyon.2022.e10874"
-  citations: 35
-
 huang2023acsapplmat_coassemb:
   doi: "10.1021/acsami.3c09219"
+  citations: 36
+
+hu2022heliyon:
+  doi: "10.1016/j.heliyon.2022.e10874"
   citations: 35
 
 wang2017oncotarget_microrna:
   doi: "10.18632/oncotarget.16509"
   citations: 34
 
+zhao2024redoxbiol:
+  doi: "10.1016/j.redox.2024.103055"
+  citations: 31
+
 li2022jid_sirt7:
   doi: "10.1016/j.jid.2022.03.026"
   citations: 31
-
-zhao2024redoxbiol:
-  doi: "10.1016/j.redox.2024.103055"
-  citations: 30
 
 li2021pharmacolres:
   doi: "10.1016/j.phrs.2021.105971"
@@ -225,6 +225,10 @@ tang2017photodiagn_associat:
   doi: "10.1016/j.pdpdt.2017.02.005"
   citations: 27
 
+he2022plosone:
+  doi: "10.1371/journal.pone.0263912"
+  citations: 25
+
 liu2022jciinsight:
   doi: "10.1172/jci.insight.161870"
   citations: 25
@@ -241,9 +245,9 @@ luo2018peerj_naturede:
   doi: "10.7717/peerj.4737"
   citations: 24
 
-he2022plosone:
-  doi: "10.1371/journal.pone.0263912"
-  citations: 23
+qi2024foodfunct:
+  doi: "10.1039/d4fo03083d"
+  citations: 22
 
 huang2023actadv_preadolescent:
   doi: "10.2340/actadv.v103.13418"
@@ -260,10 +264,6 @@ peng2021fcdb:
 xie2013brjdermato_proprano:
   doi: "10.1111/bjd.12193"
   citations: 22
-
-qi2024foodfunct:
-  doi: "10.1039/d4fo03083d"
-  citations: 21
 
 zhou2024ijbs:
   doi: "10.7150/ijbs.90459"
@@ -285,13 +285,13 @@ chen2024natcommun_rosacea:
   doi: "10.1038/s41467-024-52946-7"
   citations: 19
 
+huang2023actadv_tofacitinib:
+  doi: "10.2340/actadv.v103.12425"
+  citations: 19
+
 zhu2022frontcelldevbiol:
   doi: "10.3389/fcell.2022.906755"
   citations: 19
-
-huang2023actadv_tofacitinib:
-  doi: "10.2340/actadv.v103.12425"
-  citations: 18
 
 chen2023ijbs_aqp3:
   doi: "10.7150/ijbs.86207"
@@ -321,16 +321,16 @@ yu2025agingcell:
   doi: "10.1111/acel.14482"
   citations: 16
 
+xiao2022bbadis:
+  doi: "10.1016/j.bbadis.2022.166563"
+  citations: 16
+
 chen2025jbiomsci:
   doi: "10.1186/s12929-025-01143-9"
   citations: 15
 
 huang2023actadv_drugsurvival:
   doi: "10.2340/actadv.v103.13475"
-  citations: 15
-
-xiao2022bbadis:
-  doi: "10.1016/j.bbadis.2022.166563"
   citations: 15
 
 huang2022ppa_qol:
@@ -377,6 +377,10 @@ zhao2024biomarkres:
   doi: "10.1186/s40364-024-00663-0"
   citations: 13
 
+chen2023humvaccini_characte:
+  doi: "10.1080/21645515.2023.2268990"
+  citations: 13
+
 hemin2020induct:
   doi: "10.1016/j.apmt.2020.100805"
   citations: 13
@@ -413,10 +417,6 @@ yuan2020intimmunopha:
   doi: "10.1016/j.intimp.2020.106544"
   citations: 12
 
-chen2023humvaccini_characte:
-  doi: "10.1080/21645515.2023.2268990"
-  citations: 12
-
 chen2023frontnut:
   doi: "10.3389/fnut.2023.1092781"
   citations: 11
@@ -441,6 +441,10 @@ lei2018jdermatol_fluorofe:
   doi: "10.1111/1346-8138.14304"
   citations: 11
 
+huang2024actadv_aa_biomarkers:
+  doi: "10.2340/actadv.v104.40971"
+  citations: 10
+
 huang2023agingdis:
   doi: "10.14336/AD.2022.1217"
   citations: 10
@@ -457,8 +461,8 @@ shen2023nitrog:
   doi: "10.1016/j.scitotenv.2022.159013"
   citations: 10
 
-huang2024actadv_aa_biomarkers:
-  doi: "10.2340/actadv.v104.40971"
+ma2025jaad:
+  doi: "10.1016/j.jaad.2024.12.003"
   citations: 9
 
 meng2024lifesci:
@@ -475,10 +479,6 @@ zhou2023frontpharmac:
 
 li2025advsci_organoid:
   doi: "10.1002/advs.202502436"
-  citations: 8
-
-ma2025jaad:
-  doi: "10.1016/j.jaad.2024.12.003"
   citations: 8
 
 deng2020ppa_ipl:
@@ -521,6 +521,14 @@ tang2025jdermsci:
   doi: "10.1016/j.jdermsci.2025.05.005"
   citations: 6
 
+huang2025jaad_ritlecitinib_sites:
+  doi: "10.1016/j.jaad.2025.07.008"
+  citations: 6
+
+dirr2024jamadermatol:
+  doi: "10.1001/jamadermatol.2024.0636"
+  citations: 6
+
 hu2024expdermatol_pyroptosis:
   doi: "10.1111/exd.14812"
   citations: 6
@@ -551,14 +559,6 @@ wang2015jdermatols_asymmetr:
 
 huang2026jaad_proteomic:
   doi: "10.1016/j.jaad.2025.08.014"
-  citations: 5
-
-huang2025jaad_ritlecitinib_sites:
-  doi: "10.1016/j.jaad.2025.07.008"
-  citations: 5
-
-dirr2024jamadermatol:
-  doi: "10.1001/jamadermatol.2024.0636"
   citations: 5
 
 wang2022jocd_spicy:
@@ -609,6 +609,10 @@ wang2025jid:
   doi: "10.1016/j.jid.2024.11.028"
   citations: 4
 
+liang2024jdermatol:
+  doi: "10.1111/1346-8138.17168"
+  citations: 4
+
 huang2021ppa_botox:
   doi: "10.2147/PPA.S311322"
   citations: 4
@@ -637,8 +641,12 @@ long2024immuninflamdis:
   doi: "10.1002/iid3.70108"
   citations: 3
 
-liang2024jdermatol:
-  doi: "10.1111/1346-8138.17168"
+huang2026jamacadderma:
+  doi: "10.1016/j.jaad.2025.09.053"
+  citations: 3
+
+he2025intjnanomedi:
+  doi: "10.2147/IJN.S499289"
   citations: 3
 
 huang2024intjdermatol:
@@ -681,16 +689,12 @@ shi2023frontgenet:
   doi: "10.3389/fgene.2023.1115027"
   citations: 2
 
-huang2026jamacadderma:
-  doi: "10.1016/j.jaad.2025.09.053"
-  citations: 2
-
-he2025intjnanomedi:
-  doi: "10.2147/IJN.S499289"
-  citations: 2
-
 yang2025jamacadderma:
   doi: "10.1016/j.jaad.2025.01.070"
+  citations: 2
+
+peng2024expdermatol:
+  doi: "10.1111/exd.15120"
   citations: 2
 
 wang2021actadermvene:
@@ -715,10 +719,6 @@ xie2022bjd:
 
 huang2026qjm:
   doi: "10.1093/qjmed/hcaf221"
-  citations: 1
-
-peng2024expdermatol:
-  doi: "10.1111/exd.15120"
   citations: 1
 
 rao2022bmj:
@@ -851,4 +851,12 @@ wang2026jamadermat_systemic:
 
 zhang2026jinvestder_increase:
   doi: "10.1016/j.jid.2026.05.035"
+  citations: 0
+
+ke2026actadermve_treatmen:
+  doi: "10.2340/actadv.v106.adv-2026-0453"
+  citations: 0
+
+huang2026jamacadder_acutepha:
+  doi: "10.1016/j.jaad.2026.06.116"
   citations: 0
