@@ -52,6 +52,7 @@
 - Explain how the lab's science translates into real clinical programs and resources.
 - Keep this page focused on translational value rather than duplicating the entire research page.
 - Prefer concrete research/clinical interfaces — cohorts, sample collections, disease focus, therapeutic questions, trial routes — over abstract language about translation.
+- The embedded related-publications list is text-only in both languages (`hide_publication_thumbnails: true` in both Clinical page front matters), matching the dedicated Publications pages and avoiding a patchy list when preview coverage is incomplete.
 - Usually resolves to: current interfaces + one contact / collaboration route.
 
 ### Contact (`/contact/` and `/zh/contact/`)

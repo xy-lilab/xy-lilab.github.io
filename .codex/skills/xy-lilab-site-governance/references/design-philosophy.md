@@ -94,7 +94,7 @@
 ## Publications Presentation
 
 - Publications are a core credibility feature, not a secondary archive.
-- List pages should support scanning by title, authors, venue, year, preview thumbnail, and detail link.
+- Publication lists should prioritize scanning by title, authors, venue, year, and detail link. Preview thumbnails are optional; the dedicated Publications pages and the Clinical pages' embedded publication lists stay text-only where image coverage is sparse.
 - Detail pages should stay content-first and easy to read. Prefer a simple bibliographic header over dashboard-like metadata boxes.
 - Filter UI on `/publications/` is driven by classification fields in `_bibliography/papers.bib` (`category`, `subcategory`, `publication_type`, `clinical`, `basic`). Do not invent new filter facets without updating the skill first.
 - Changes to bibliography rendering or paper-detail UX require a skill update first.

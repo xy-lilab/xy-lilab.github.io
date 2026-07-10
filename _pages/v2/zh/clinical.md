@@ -5,6 +5,7 @@ title: 临床研究
 lang: zh
 description: 依托湘雅医院丰富临床资源，开展皮肤衰老、毛发疾病及炎症性皮肤病的临床与转化研究。
 show_lead: false
+hide_publication_thumbnails: true
 ---
 
 依托湘雅医院皮肤科的丰富临床资源和患者队列，实验室围绕三大方向开展多中心临床研究与转化医学研究。

@@ -331,3 +331,17 @@
   photo: /assets/img/members/placeholder.png
   department: 皮肤科
   department_en: Department of Dermatology
+
+- name: 黄俊栋
+  sort_key: "09.5"
+  name_en: Jundong Huang
+  role: clinical_researcher
+  title: 医师、医学博士
+  title_en: Physician, M.D.
+  photo: /assets/img/members/hjd.png
+  department: 皮肤科
+  department_en: Department of Dermatology
+  bio: >
+    Research focuses on alopecia areata and other disorders of skin appendages, with interests in clinical diagnosis and treatment, translational research, and disease cohort management. Over 30 papers published as first or corresponding author in peer-reviewed journals including <em>JAAD</em> and <em>JAMA Dermatology</em>. Dedicated to advancing precision medicine and comprehensive care for hair disorders, with a special emphasis on alopecia areata.
+  bio_zh: >
+    聚焦斑秃等附属器疾病的临床诊疗、转化应用研究及疾病队列建设。以第一作者或通讯作者在 <em>JAAD</em>、<em>JAMA Dermatology</em> 等 SCI 及中文核心期刊发表论文三十余篇，致力于推动皮肤附属器疾病尤其是斑秃的精准诊疗与全程管理。

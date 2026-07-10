@@ -4,6 +4,7 @@ permalink: /clinical/
 title: Clinical Research
 description: Leveraging Xiangya Hospital's clinical resources for skin aging, hair disorder, and inflammatory skin disease research.
 show_lead: false
+hide_publication_thumbnails: true
 ---
 
 Leveraging the extensive clinical resources and patient cohorts of the Department of Dermatology at Xiangya Hospital, the lab conducts multicenter clinical studies and translational research across three major directions.
