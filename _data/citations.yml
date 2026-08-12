@@ -3,7 +3,7 @@
 
 2023scichinali_biomarke:
   doi: "10.1007/s11427-023-2305-0"
-  citations: 368
+  citations: 369
 
 myung2013jinvestder_epitheli:
   doi: "10.1038/jid.2012.230"
@@ -15,7 +15,7 @@ bruzzese2011jcellphysi_hdac:
 
 piquero-casals2021dermatolth_urea:
   doi: "10.1007/s13555-021-00611-y"
-  citations: 115
+  citations: 118
 
 deng2021embomolmed:
   doi: "10.15252/emmm.202013560"
@@ -23,11 +23,11 @@ deng2021embomolmed:
 
 deng2022jid_ar:
   doi: "10.1016/j.jid.2022.01.003"
-  citations: 94
+  citations: 96
 
 zhang2021frontimmunol:
   doi: "10.3389/fimmu.2021.756550"
-  citations: 93
+  citations: 94
 
 yuan2019biomedphar_artemisi:
   doi: "10.1016/j.biopha.2019.109181"
@@ -93,6 +93,10 @@ liu2012clinexpder_differen:
   doi: "10.1111/j.1365-2230.2011.04315.x"
   citations: 61
 
+liu2020biochembioph:
+  doi: "10.1016/j.bbrc.2019.10.073"
+  citations: 57
+
 zhao2021jmir:
   doi: "10.2196/23415"
   citations: 56
@@ -127,7 +131,7 @@ wang2023theranosti_mechanic:
 
 meng2025jadvres:
   doi: "10.1016/j.jare.2024.06.013"
-  citations: 45
+  citations: 46
 
 deng2023natcommun:
   doi: "10.1038/s41467-023-39761-2"
@@ -229,17 +233,17 @@ liu2022jciinsight:
   doi: "10.1172/jci.insight.161870"
   citations: 26
 
-he2022plosone:
-  doi: "10.1371/journal.pone.0263912"
-  citations: 25
-
 zhang2024natcommun_sensory:
   doi: "10.1038/s41467-024-50970-1"
-  citations: 24
+  citations: 25
 
 mao2024agingcell_drug:
   doi: "10.1111/acel.14171"
-  citations: 24
+  citations: 25
+
+he2022plosone:
+  doi: "10.1371/journal.pone.0263912"
+  citations: 25
 
 luo2018peerj_naturede:
   doi: "10.7717/peerj.4737"
@@ -489,6 +493,10 @@ li2025advsci_organoid:
   doi: "10.1002/advs.202502436"
   citations: 8
 
+xiao2024jid_serpinb:
+  doi: "10.1016/j.jid.2024.04.011"
+  citations: 8
+
 deng2020ppa_ipl:
   doi: "10.2147/PPA.S271859"
   citations: 8
@@ -503,10 +511,6 @@ zhou2014brjdermato_novel:
 
 tang2025jdermsci:
   doi: "10.1016/j.jdermsci.2025.05.005"
-  citations: 7
-
-xiao2024jid_serpinb:
-  doi: "10.1016/j.jid.2024.04.011"
   citations: 7
 
 jiang2023jdermatol:
@@ -613,6 +617,10 @@ kanemaru2015jdermatol_dissemin:
   doi: "10.1111/1346-8138.12715"
   citations: 5
 
+xiao2026cell:
+  doi: "10.1016/j.cell.2026.01.036"
+  citations: 4
+
 wang2025lifemed:
   doi: "10.1093/lifemedi/lnaf005"
   citations: 4
@@ -639,10 +647,6 @@ wu2021dermther:
 
 jiang2021zhongnandaxu:
   doi: "10.11817/j.issn.1672-7347.2021.200801"
-  citations: 4
-
-liu2020biochembioph:
-  doi: "10.1016/j.bbrc.2019.10.073"
   citations: 4
 
 wang2025medcomm:
@@ -672,10 +676,6 @@ chen2023photoderma_longterm:
 chen2024clinexpder_associat:
   doi: "10.1093/ced/llae122"
   citations: 3
-
-xiao2026cell:
-  doi: "10.1016/j.cell.2026.01.036"
-  citations: 2
 
 li2026natcommun:
   doi: "10.1038/s41467-026-70153-4"
