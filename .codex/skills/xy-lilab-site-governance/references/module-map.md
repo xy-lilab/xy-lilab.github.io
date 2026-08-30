@@ -108,7 +108,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 
 - `scripts/fetch_publications.py`
   - queries PubMed for new lab papers and appends classified BibTeX entries to `_bibliography/papers.bib`
-  - backfills missing abstracts on existing entries before searching for new papers, using PubMed first, PMC second, and OpenAlex only as a DOI-based fallback; OpenAlex fallback excludes letters, editorials, and corrections whose indexed text is not reliably a formal abstract; it never invents an abstract
+  - backfills missing abstracts on existing entries before searching for new papers, using PubMed first, PMC second, OpenAlex by DOI, and a batched Semantic Scholar DOI lookup last; secondary-index fallback excludes letters, editorials, corrections, and case reports whose indexed text is not reliably a formal abstract; it never invents an abstract
   - joins every PubMed `AbstractText` section (including section labels) instead of keeping only the first structured-abstract section
   - impact factor + JCR quartile come from `scripts/jcr_lookup.py` (committed JCR data), not a third-party package or network call
 - `scripts/classify_paper.py`

@@ -3,7 +3,8 @@
 Refresh publication metadata and fetch new PubMed papers for the Li Lab.
 
 Before the new-paper search, missing abstracts on existing public entries are
-backfilled from PubMed, PMC, then OpenAlex. Abstracts are never generated.
+backfilled from PubMed, PMC, OpenAlex, then Semantic Scholar. Abstracts are
+never generated.
 
 Filters:
   1. Affiliation: Xiangya Hospital OR Central South University
@@ -61,6 +62,7 @@ PUBMED_EFETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 DOI_BIBTEX_URL = "https://doi.org/"
 OPENALEX_WORKS = "https://api.openalex.org/works"
 OPENALEX_EMAIL = "liji_xy@csu.edu.cn"
+SEMANTIC_SCHOLAR_BATCH = "https://api.semanticscholar.org/graph/v1/paper/batch"
 
 # Affiliation terms to match
 AFFILIATIONS = [
@@ -70,7 +72,12 @@ AFFILIATIONS = [
 
 MIN_YEAR = 2026
 WEB_MIN_YEAR = 2020
-OPENALEX_EXCLUDED_PUBLICATION_TYPES = {"correction", "editorial", "letter"}
+SECONDARY_INDEX_EXCLUDED_PUBLICATION_TYPES = {
+    "case_report",
+    "correction",
+    "editorial",
+    "letter",
+}
 
 
 # ── Helpers ──
@@ -200,12 +207,55 @@ def fetch_openalex_abstract(doi):
         return ""
 
 
-def openalex_fallback_allowed(entry):
-    """Use OpenAlex only where its indexed text is reliably abstract-like."""
+def secondary_index_fallback_allowed(entry):
+    """Use secondary indexes only where their text is reliably abstract-like."""
     return (
         bool(entry["doi"])
-        and entry["publication_type"] not in OPENALEX_EXCLUDED_PUBLICATION_TYPES
+        and entry["publication_type"] not in SECONDARY_INDEX_EXCLUDED_PUBLICATION_TYPES
     )
+
+
+def semantic_scholar_abstracts_from_records(records):
+    """Map Semantic Scholar batch results by DOI, independent of result order."""
+    abstracts = {}
+    for record in records or []:
+        if not record:
+            continue
+        doi = (record.get("externalIds") or {}).get("DOI", "").lower()
+        abstract = normalize_text(record.get("abstract", ""))
+        abstract = re.sub(r"^Abstract\s*:?\s*", "", abstract, flags=re.IGNORECASE)
+        if doi and abstract:
+            abstracts[doi] = abstract
+    return abstracts
+
+
+def fetch_semantic_scholar_abstracts(entries):
+    """Fetch DOI-keyed abstracts in one rate-limit-friendly batch request."""
+    eligible = [entry for entry in entries if secondary_index_fallback_allowed(entry)]
+    if not eligible:
+        return {}
+    query = urllib.parse.urlencode({
+        "fields": "abstract,externalIds",
+    })
+    payload = json.dumps({
+        "ids": [f"DOI:{entry['doi']}" for entry in eligible],
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        f"{SEMANTIC_SCHOLAR_BATCH}?{query}",
+        data=payload,
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "xy-lilab-publication-refresh/1.0",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            records = json.loads(resp.read())
+        return semantic_scholar_abstracts_from_records(records)
+    except Exception as exc:
+        print(f"    Warning: Semantic Scholar batch lookup failed: {exc}")
+        return {}
 
 
 def get_author_list(article):
@@ -465,13 +515,21 @@ def backfill_missing_abstracts():
             time.sleep(0.2)
 
     for entry in entries:
-        if entry["key"] in abstracts or not openalex_fallback_allowed(entry):
+        if entry["key"] in abstracts or not secondary_index_fallback_allowed(entry):
             continue
         abstract = fetch_openalex_abstract(entry["doi"])
         if abstract:
             abstracts[entry["key"]] = abstract
             sources[entry["key"]] = "OpenAlex"
         time.sleep(0.12)
+
+    unresolved_entries = [entry for entry in entries if entry["key"] not in abstracts]
+    semantic_scholar_abstracts = fetch_semantic_scholar_abstracts(unresolved_entries)
+    for entry in unresolved_entries:
+        abstract = semantic_scholar_abstracts.get(entry["doi"].lower(), "")
+        if abstract:
+            abstracts[entry["key"]] = abstract
+            sources[entry["key"]] = "Semantic Scholar"
 
     if not abstracts:
         print("No authoritative abstracts are currently available for backfill.")

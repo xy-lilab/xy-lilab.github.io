@@ -56,11 +56,23 @@ class AbstractExtractionTests(unittest.TestCase):
             }],
         )
 
-    def test_openalex_fallback_excludes_non_abstract_article_types(self):
+    def test_secondary_index_fallback_excludes_non_abstract_article_types(self):
         letter = {"doi": "10.1000/letter", "publication_type": "letter"}
+        case_report = {"doi": "10.1000/case", "publication_type": "case_report"}
         original = {"doi": "10.1000/original", "publication_type": "original"}
-        self.assertFalse(subject.openalex_fallback_allowed(letter))
-        self.assertTrue(subject.openalex_fallback_allowed(original))
+        self.assertFalse(subject.secondary_index_fallback_allowed(letter))
+        self.assertFalse(subject.secondary_index_fallback_allowed(case_report))
+        self.assertTrue(subject.secondary_index_fallback_allowed(original))
+
+    def test_maps_semantic_scholar_results_by_doi_and_removes_prefix(self):
+        records = [{
+            "externalIds": {"DOI": "10.1000/EXAMPLE"},
+            "abstract": "Abstract: A verified abstract.",
+        }]
+        self.assertEqual(
+            subject.semantic_scholar_abstracts_from_records(records),
+            {"10.1000/example": "A verified abstract."},
+        )
 
 
 if __name__ == "__main__":
