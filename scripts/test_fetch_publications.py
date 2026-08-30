@@ -74,6 +74,48 @@ class AbstractExtractionTests(unittest.TestCase):
             {"10.1000/example": "A verified abstract."},
         )
 
+    def test_rejects_indexing_fragments_and_non_abstract_types(self):
+        original = {"publication_type": "original"}
+        correction = {"publication_type": "correction"}
+        self.assertEqual(
+            subject.abstract_rejection_reason(
+                original,
+                "The data that support this study are available on request.",
+            ),
+            "data-availability statement",
+        )
+        self.assertEqual(
+            subject.abstract_rejection_reason(
+                original,
+                "Please note: The publisher is not responsible for the content or functionality.",
+            ),
+            "publisher disclaimer",
+        )
+        self.assertIn(
+            "do not carry formal abstracts",
+            subject.abstract_rejection_reason(correction, "This corrects an article."),
+        )
+        self.assertEqual(
+            subject.abstract_rejection_reason(original, "A genuine research abstract."),
+            "",
+        )
+
+    def test_excludes_corrections_errata_and_corrigenda_as_outputs(self):
+        for title in (
+            "Correction: Example article",
+            "Erratum for Example article",
+            "Corrigendum to Example article",
+        ):
+            with self.subTest(title=title):
+                self.assertFalse(subject.is_publication_output({
+                    "title": title,
+                    "abstract": "",
+                }))
+        self.assertTrue(subject.is_publication_output({
+            "title": "A genuine research article",
+            "abstract": "A genuine research abstract.",
+        }))
+
 
 if __name__ == "__main__":
     unittest.main()

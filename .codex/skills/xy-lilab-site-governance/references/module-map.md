@@ -108,7 +108,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 
 - `scripts/fetch_publications.py`
   - queries PubMed for new lab papers and appends classified BibTeX entries to `_bibliography/papers.bib`
-  - backfills missing abstracts on existing entries before searching for new papers, using PubMed first, PMC second, OpenAlex by DOI, and a batched Semantic Scholar DOI lookup last; secondary-index fallback excludes letters, editorials, corrections, and case reports whose indexed text is not reliably a formal abstract; it never invents an abstract
+  - backfills missing abstracts on existing entries before searching for new papers, using PubMed first, PMC second, OpenAlex by DOI, and a batched Semantic Scholar DOI lookup last; all sources pass content-level rejection for correction notices, letter/editorial body text, data statements, and publisher disclaimers, while secondary-index fallback additionally excludes letters, editorials, corrections, and case reports; it never invents an abstract
   - joins every PubMed `AbstractText` section (including section labels) instead of keeping only the first structured-abstract section
   - impact factor + JCR quartile come from `scripts/jcr_lookup.py` (committed JCR data), not a third-party package or network call
 - `scripts/classify_paper.py`
@@ -142,6 +142,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - If the change is a navigation taxonomy change, update `_includes/nav.liquid` for both languages and update the skill first.
 - If the change touches publication rendering (list or detail), update `_layouts/bib.liquid` or `_layouts/paper-detail-router.html` — and update the skill first when rendering rules change.
 - Publication-list `Read more` links are shown only when the bibliography entry has an abstract; the title/DOI remains the outward publisher route when no abstract exists.
+- Correction, erratum, and corrigendum records are excluded from `papers.bib` entirely, because even hidden jekyll-scholar entries generate public detail routes; `scripts/fetch_publications.py` skips them before append.
 - Automation scripts are shared by humans and scheduled workflows. Keep their CLI contract and output location stable.
 
 ## Skill-First Structural Triggers

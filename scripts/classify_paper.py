@@ -105,7 +105,7 @@ def classify(title, abstract=""):
 # Ordered by specificity — first match wins.
 TYPE_PATTERNS = [
     ("guideline", [r"\bguidelin[es]", r"consensus (statement|document|recommendation)"]),
-    ("correction", [r"^correction(?: to|:)", r"\berratum\b", r"\bauthor correction"]),
+    ("correction", [r"^correction(?: to|:)", r"\berratum\b", r"\bcorrigendum\b", r"\bauthor correction"]),
     ("editorial", [r"^editorial(?:[:\s]|$)", r"commentary on\b"]),
     ("letter", [r"^response to", r"^reply to", r"^letter to the editor", r"^correspondence"]),
     ("case_report", [r"\bcase report\b", r"\bcase series\b"]),

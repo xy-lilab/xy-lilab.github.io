@@ -78,6 +78,14 @@ SECONDARY_INDEX_EXCLUDED_PUBLICATION_TYPES = {
     "editorial",
     "letter",
 }
+INVALID_ABSTRACT_PUBLICATION_TYPES = {"correction", "editorial", "letter"}
+INVALID_ABSTRACT_PATTERNS = (
+    ("correction notice", r"^\[?(?:this )?(?:corrects?|correction|erratum|corrigendum)\b"),
+    ("letter body", r"^(?:dear editor|to the editor|dear sir)\b"),
+    ("editorial body", r"^editorial on\b"),
+    ("data-availability statement", r"^(?:data availability|the data (?:that )?support|data (?:are|is) available)\b"),
+    ("publisher disclaimer", r"publisher is not responsible for the content or functionality"),
+)
 
 
 # ── Helpers ──
@@ -213,6 +221,38 @@ def secondary_index_fallback_allowed(entry):
         bool(entry["doi"])
         and entry["publication_type"] not in SECONDARY_INDEX_EXCLUDED_PUBLICATION_TYPES
     )
+
+
+def abstract_rejection_reason(entry, abstract):
+    """Explain why indexed text is not a genuine scholarly abstract."""
+    publication_type = entry.get("publication_type", "").lower()
+    if publication_type in INVALID_ABSTRACT_PUBLICATION_TYPES:
+        return f"{publication_type} records do not carry formal abstracts"
+    text = normalize_text(abstract)
+    if not text:
+        return "empty text"
+    for reason, pattern in INVALID_ABSTRACT_PATTERNS:
+        if re.search(pattern, text, flags=re.IGNORECASE):
+            return reason
+    return ""
+
+
+def add_valid_abstract(abstracts, sources, entry, abstract, source):
+    """Add only genuine abstracts; log rejected indexing fragments."""
+    if not abstract:
+        return False
+    reason = abstract_rejection_reason(entry, abstract)
+    if reason:
+        print(f"    Skipped {entry['key']} {source} text: {reason}")
+        return False
+    abstracts[entry["key"]] = abstract
+    sources[entry["key"]] = source
+    return True
+
+
+def is_publication_output(paper):
+    """Exclude maintenance notices that are not lab research outputs."""
+    return classify_type(paper["title"], paper.get("abstract", "")) != "correction"
 
 
 def semantic_scholar_abstracts_from_records(records):
@@ -499,9 +539,7 @@ def backfill_missing_abstracts():
     sources = {}
     for entry in entries:
         abstract = pubmed_records.get(entry["pmid"], "")
-        if abstract:
-            abstracts[entry["key"]] = abstract
-            sources[entry["key"]] = "PubMed"
+        add_valid_abstract(abstracts, sources, entry, abstract, "PubMed")
 
     for entry in entries:
         if entry["key"] in abstracts:
@@ -509,27 +547,21 @@ def backfill_missing_abstracts():
         pmcid = pmcids.get(entry["pmid"], "")
         if pmcid:
             abstract = fetch_pmc_abstract(pmcid)
-            if abstract:
-                abstracts[entry["key"]] = abstract
-                sources[entry["key"]] = "PMC"
+            add_valid_abstract(abstracts, sources, entry, abstract, "PMC")
             time.sleep(0.2)
 
     for entry in entries:
         if entry["key"] in abstracts or not secondary_index_fallback_allowed(entry):
             continue
         abstract = fetch_openalex_abstract(entry["doi"])
-        if abstract:
-            abstracts[entry["key"]] = abstract
-            sources[entry["key"]] = "OpenAlex"
+        add_valid_abstract(abstracts, sources, entry, abstract, "OpenAlex")
         time.sleep(0.12)
 
     unresolved_entries = [entry for entry in entries if entry["key"] not in abstracts]
     semantic_scholar_abstracts = fetch_semantic_scholar_abstracts(unresolved_entries)
     for entry in unresolved_entries:
         abstract = semantic_scholar_abstracts.get(entry["doi"].lower(), "")
-        if abstract:
-            abstracts[entry["key"]] = abstract
-            sources[entry["key"]] = "Semantic Scholar"
+        add_valid_abstract(abstracts, sources, entry, abstract, "Semantic Scholar")
 
     if not abstracts:
         print("No authoritative abstracts are currently available for backfill.")
@@ -547,6 +579,9 @@ def backfill_missing_abstracts():
 def format_bibtex_entry(paper):
     """Format a paper as a BibTeX entry."""
     key = generate_bib_key(paper)
+    abstract = paper.get("abstract", "")
+    category, subcategory = classify_paper(paper["title"], abstract)
+    paper_type = classify_type(paper["title"], abstract)
     lines = [f"@article{{{key},"]
     lines.append(f"  title={{{escape_bibtex(paper['title'])}}},")
     lines.append(f"  author={{{escape_bibtex(paper['author_str'])}}},")
@@ -565,10 +600,8 @@ def format_bibtex_entry(paper):
     if paper["pages"]:
         lines.append(f"  pages={{{paper['pages']}}},")
     lines.append(f"  pmid={{{paper['pmid']}}},")
-    if paper["abstract"]:
-        lines.append(f"  abstract={{{escape_bibtex(paper['abstract'])}}},")
-    category, subcategory = classify_paper(paper["title"], paper.get("abstract", ""))
-    paper_type = classify_type(paper["title"], paper.get("abstract", ""))
+    if not abstract_rejection_reason({"publication_type": paper_type}, abstract):
+        lines.append(f"  abstract={{{escape_bibtex(abstract)}}},")
     is_clinical, is_basic = classify_clinical_basic(
         paper["title"], paper.get("abstract", ""), paper_type
     )
@@ -660,6 +693,10 @@ def main():
 
         for pubmed_article in root.findall(".//PubmedArticle"):
             paper = extract_paper_data(pubmed_article)
+
+            if not is_publication_output(paper):
+                print(f"  - Skipping bibliographic maintenance notice: {paper['title'][:80]}")
+                continue
 
             # Skip if DOI already exists in .bib (catches papers added without PMID)
             if paper["doi"] and paper["doi"].lower() in existing_dois:
