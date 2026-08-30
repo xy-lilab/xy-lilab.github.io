@@ -147,7 +147,7 @@
         </div>
       </div>
 
-      {% if entry.key %}
+      {% if entry.key and entry.abstract %}
         <div class="bib-actions">
           <a class="bib-link" href="{{ entry.key | prepend: '/bibliography/' | prepend: site.baseurl }}">Read more</a>
         </div>

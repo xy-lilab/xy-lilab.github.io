@@ -32,26 +32,26 @@ jobs:
           echo "exit_code=$?" >> $GITHUB_OUTPUT
         continue-on-error: true
 
-      - name: Check for new papers
+      - name: Check for publication updates
         id: check
         run: |
           if git diff --quiet _bibliography/papers.bib; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "No new papers found."
+            echo "No publication updates found."
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "New papers detected!"
+            echo "Publication updates detected!"
           fi
 
-      - name: Commit and push new papers
+      - name: Commit and push publication updates
         if: steps.check.outputs.has_changes == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add _bibliography/papers.bib
-          git commit -m "feat(auto): add new publications from PubMed
+          git commit -m "chore(auto): update publications from scholarly metadata
 
-          Automatically fetched by fetch-publications workflow."
+          Automatically refreshed by fetch-publications workflow."
           git push
 
       - name: Create notification issue
@@ -60,7 +60,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            let body = 'New publications were automatically fetched from PubMed and added to the bibliography.\n\n';
+            let body = 'Publication records were automatically refreshed from scholarly metadata sources.\n\n';
             try {
               body += fs.readFileSync('scripts/new_papers_summary.md', 'utf8');
             } catch (e) {
@@ -70,7 +70,7 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `📄 New publications auto-fetched from PubMed`,
+              title: `📄 Publication metadata automatically updated`,
               body: body,
               labels: ['publications', 'automated'],
               assignees: ['Wu-Zzz']

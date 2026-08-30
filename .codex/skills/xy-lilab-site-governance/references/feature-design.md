@@ -36,6 +36,7 @@
 - The list page supports multi-dimensional filtering driven by bib fields: research direction (`category`), subtype (`subcategory`), paper type (`publication_type`), and clinical/basic flags.
 - The list is text-only — scan by title, authors, venue, and year. Preview thumbnails are intentionally off (`hide_publication_thumbnails: true` on both publications pages): most entries lack an image, so the featured block hides thumbs via CSS and the complete list matches. Citation counts live in `_data/citations.yml` but are hidden site-wide via CSS (`.bib-citation-badge { display: none }`), so they are not a visible list field.
 - Detail pages should stay reading-first: title, authors, venue / year / DOI, outward publisher link, abstract, and the graphical abstract when available.
+- Show `Read more` only when the bibliography entry contains an abstract. Papers whose authoritative metadata has no abstract still link outward through the title/DOI; do not send visitors to a detail page that adds no substantive content, and never fabricate a replacement abstract.
 - Do not introduce card-heavy metadata dashboards on detail pages.
 - Any change to the filter facets, list rendering, or detail layout requires a skill update first.
 
@@ -97,7 +98,8 @@
 
 ## Publication Automation
 
-- `fetch-publications.yml` runs weekly: `scripts/fetch_publications.py` queries PubMed for new lab papers, classifies them via `scripts/classify_paper.py`, and appends BibTeX entries to `_bibliography/papers.bib`.
+- `fetch-publications.yml` runs weekly: `scripts/fetch_publications.py` first backfills missing abstracts on existing entries, then queries PubMed for new lab papers, classifies them via `scripts/classify_paper.py`, and appends BibTeX entries to `_bibliography/papers.bib`.
+- Abstract source priority is PubMed, then PMC for PubMed-linked open full text, then OpenAlex by DOI. PubMed structured abstracts must join all labelled `AbstractText` sections. OpenAlex fallback is not used for letters, editorials, or corrections because its abstract index may contain body text or data-availability boilerplate for those formats. A missing upstream abstract remains missing rather than being inferred or generated.
 - `update-citations.yml` runs weekly: `scripts/update_citations.py` refreshes `citation_count` from OpenAlex into `_data/citations.yml`.
 - The keyword-based classifier is the current source of truth for category / subcategory / publication-type / clinical / basic assignment. Manual edits to those fields in `papers.bib` should only override the classifier when the classifier is wrong; do not fight the automation by resetting fields each run.
 - Impact factor + JCR quartile are sourced from a committed Clarivate JCR export (`scripts/data/jcr_2025.json`) via `scripts/jcr_lookup.py` — used by both the weekly fetch (new papers) and `scripts/refresh_impact_factors.py` (bulk re-run). When a new JCR table arrives: drop the `.xlsx`, run `build_jcr_data.py` to regenerate the JSON, then `refresh_impact_factors.py --apply`. The `cas_quartile` (中科院分区) field has been retired — never displayed, not maintained.

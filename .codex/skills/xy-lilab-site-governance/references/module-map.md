@@ -16,7 +16,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - builds the Jekyll site, caches ImageMagick WebP output and apt-installed ImageMagick, deploys to `gh-pages`
   - triggers on push/PR to `main`, manual dispatch, and on `workflow_run` completion of `Fetch new publications`. A lightweight `gate` job skips the build when that run produced no new commit (it compares the branch tip to `workflow_run.head_sha`), so empty fetch weeks do not redeploy. This chaining exists because the fetch workflow pushes with the default `GITHUB_TOKEN`, and GitHub deliberately does not surface `GITHUB_TOKEN` pushes as `push` events (recursion guard) — so without it, auto-fetched papers only reach the live site on the next human push. `Update citation counts` is intentionally NOT wired here: citation counts are hidden site-wide via CSS, so a rebuild has no visible effect (refreshed counts ride along on the next fetch/human deploy).
 - `.github/workflows/fetch-publications.yml`
-  - weekly PubMed → `papers.bib` append with auto-classification
+  - weekly abstract backfill plus PubMed → `papers.bib` append with auto-classification
 - `.github/workflows/update-citations.yml`
   - weekly OpenAlex citation-count refresh
 
@@ -108,6 +108,8 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 
 - `scripts/fetch_publications.py`
   - queries PubMed for new lab papers and appends classified BibTeX entries to `_bibliography/papers.bib`
+  - backfills missing abstracts on existing entries before searching for new papers, using PubMed first, PMC second, and OpenAlex only as a DOI-based fallback; OpenAlex fallback excludes letters, editorials, and corrections whose indexed text is not reliably a formal abstract; it never invents an abstract
+  - joins every PubMed `AbstractText` section (including section labels) instead of keeping only the first structured-abstract section
   - impact factor + JCR quartile come from `scripts/jcr_lookup.py` (committed JCR data), not a third-party package or network call
 - `scripts/classify_paper.py`
   - keyword-based category / subcategory / publication-type / clinical / basic classifier used by `fetch_publications.py`
@@ -139,6 +141,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - If the change is bilingual UI copy, edit `_data/i18n/zh.yml` (and `en.yml` where applicable) rather than hardcoding strings in layouts.
 - If the change is a navigation taxonomy change, update `_includes/nav.liquid` for both languages and update the skill first.
 - If the change touches publication rendering (list or detail), update `_layouts/bib.liquid` or `_layouts/paper-detail-router.html` — and update the skill first when rendering rules change.
+- Publication-list `Read more` links are shown only when the bibliography entry has an abstract; the title/DOI remains the outward publisher route when no abstract exists.
 - Automation scripts are shared by humans and scheduled workflows. Keep their CLI contract and output location stable.
 
 ## Skill-First Structural Triggers

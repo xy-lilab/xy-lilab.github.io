@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Fetch new publications from PubMed for the Li Lab.
+Refresh publication metadata and fetch new PubMed papers for the Li Lab.
+
+Before the new-paper search, missing abstracts on existing public entries are
+backfilled from PubMed, PMC, then OpenAlex. Abstracts are never generated.
 
 Filters:
   1. Affiliation: Xiangya Hospital OR Central South University
@@ -9,11 +12,14 @@ Filters:
   4. Skips papers already in the .bib file (by PMID)
 
 Output:
+  - Backfills authoritative abstracts on existing BibTeX entries
   - Appends new BibTeX entries to _bibliography/papers.bib
   - Prints a summary of new papers found
   - Exits with code 0 if no new papers, 1 if new papers added (for CI notification)
 """
 
+import argparse
+import html
 import json
 import re
 import sys
@@ -53,6 +59,8 @@ MEMBERS_FILE = REPO_ROOT / "_data" / "members.yml"
 PUBMED_ESEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 PUBMED_EFETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 DOI_BIBTEX_URL = "https://doi.org/"
+OPENALEX_WORKS = "https://api.openalex.org/works"
+OPENALEX_EMAIL = "liji_xy@csu.edu.cn"
 
 # Affiliation terms to match
 AFFILIATIONS = [
@@ -61,6 +69,8 @@ AFFILIATIONS = [
 ]
 
 MIN_YEAR = 2026
+WEB_MIN_YEAR = 2020
+OPENALEX_EXCLUDED_PUBLICATION_TYPES = {"correction", "editorial", "letter"}
 
 
 # ── Helpers ──
@@ -111,6 +121,91 @@ def pubmed_fetch(pmids):
     url = f"{PUBMED_EFETCH}?{params}"
     with urllib.request.urlopen(url, timeout=60) as resp:
         return ET.fromstring(resp.read())
+
+
+def normalize_text(value):
+    """Collapse metadata whitespace and remove any residual markup."""
+    value = html.unescape(value or "")
+    value = re.sub(r"<[^>]+>", " ", value)
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def extract_abstract_text(parent):
+    """Join every labelled PubMed AbstractText section into one abstract."""
+    sections = []
+    for element in parent.findall(".//AbstractText"):
+        text = normalize_text("".join(element.itertext()))
+        if not text:
+            continue
+        label = normalize_text(element.get("Label", ""))
+        if label and not text.upper().startswith(f"{label.upper()}:"):
+            text = f"{label}: {text}"
+        sections.append(text)
+    return " ".join(sections)
+
+
+def fetch_pmc_abstract(pmcid):
+    """Fetch an abstract from a PMC full-text XML record."""
+    params = urllib.parse.urlencode({
+        "db": "pmc",
+        "id": pmcid,
+        "retmode": "xml",
+    })
+    try:
+        with urllib.request.urlopen(f"{PUBMED_EFETCH}?{params}", timeout=30) as resp:
+            root = ET.fromstring(resp.read())
+    except Exception as exc:
+        print(f"    Warning: PMC abstract lookup failed for {pmcid}: {exc}")
+        return ""
+
+    for abstract in root.findall(".//article-meta/abstract"):
+        if abstract.get("abstract-type") in {"toc", "graphical", "executive-summary"}:
+            continue
+        parts = []
+        title = normalize_text("".join(abstract.find("title").itertext())) if abstract.find("title") is not None else ""
+        for paragraph in abstract.findall(".//p"):
+            text = normalize_text("".join(paragraph.itertext()))
+            if text:
+                parts.append(text)
+        result = " ".join(parts)
+        if title and result and not result.upper().startswith(f"{title.upper()}:"):
+            result = f"{title}: {result}"
+        if result:
+            return result
+    return ""
+
+
+def decode_openalex_abstract(inverted_index):
+    """Reconstruct OpenAlex's position-indexed abstract representation."""
+    if not inverted_index:
+        return ""
+    positioned_words = []
+    for word, positions in inverted_index.items():
+        positioned_words.extend((position, word) for position in positions)
+    return normalize_text(" ".join(word for _, word in sorted(positioned_words)))
+
+
+def fetch_openalex_abstract(doi):
+    """Fetch an abstract from OpenAlex by exact DOI."""
+    url = f"{OPENALEX_WORKS}/https://doi.org/{urllib.parse.quote(doi, safe='')}"
+    if OPENALEX_EMAIL:
+        url += f"?mailto={urllib.parse.quote(OPENALEX_EMAIL)}"
+    try:
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            data = json.loads(resp.read())
+        return decode_openalex_abstract(data.get("abstract_inverted_index"))
+    except Exception as exc:
+        print(f"    Warning: OpenAlex abstract lookup failed for {doi}: {exc}")
+        return ""
+
+
+def openalex_fallback_allowed(entry):
+    """Use OpenAlex only where its indexed text is reliably abstract-like."""
+    return (
+        bool(entry["doi"])
+        and entry["publication_type"] not in OPENALEX_EXCLUDED_PUBLICATION_TYPES
+    )
 
 
 def get_author_list(article):
@@ -188,7 +283,7 @@ def extract_paper_data(pubmed_article):
     pmid = pubmed_article.findtext(".//MedlineCitation/PMID", "")
     article = pubmed_article.find(".//Article")
     title = article.findtext(".//ArticleTitle", "")
-    abstract = article.findtext(".//AbstractText", "")
+    abstract = extract_abstract_text(article)
     journal = article.findtext(".//Journal/Title", "")
     journal_abbrev = article.findtext(".//Journal/ISOAbbreviation", "")
     issn = ""
@@ -270,6 +365,127 @@ def escape_bibtex(text):
     return text.replace("&", r"\&").replace("%", r"\%").replace("#", r"\#")
 
 
+def bib_field(entry, name):
+    """Read a simple braced field from one BibTeX entry."""
+    match = re.search(rf"(?m)^\s*{re.escape(name)}\s*=\s*\{{([^}}]*)\}}", entry)
+    return match.group(1).strip() if match else ""
+
+
+def missing_abstract_entries(bib_content):
+    """Return public 2020+ entries whose bibliography data lacks an abstract."""
+    entries = []
+    pattern = re.compile(r"(?m)^@\w+\{([^,]+),(.*?)(?=^@\w+\{|\Z)", re.DOTALL)
+    for match in pattern.finditer(bib_content):
+        key, body = match.group(1), match.group(2)
+        year = bib_field(body, "year")
+        if not year.isdigit() or int(year) < WEB_MIN_YEAR:
+            continue
+        if bib_field(body, "web_show").lower() == "false":
+            continue
+        if re.search(r"(?m)^\s*abstract\s*=\s*\{", body):
+            continue
+        entries.append({
+            "key": key,
+            "pmid": bib_field(body, "pmid"),
+            "doi": bib_field(body, "doi"),
+            "publication_type": bib_field(body, "publication_type").lower(),
+        })
+    return entries
+
+
+def insert_abstracts(bib_content, abstracts):
+    """Insert verified abstracts after PMID (or DOI) without rewriting entries."""
+    for key, abstract in abstracts.items():
+        entry_pattern = re.compile(
+            rf"(?m)^@\w+\{{{re.escape(key)},.*?(?=^@\w+\{{|\Z)",
+            re.DOTALL,
+        )
+        match = entry_pattern.search(bib_content)
+        if not match or re.search(r"(?m)^\s*abstract\s*=", match.group(0)):
+            continue
+        entry = match.group(0)
+        lines = entry.splitlines(keepends=True)
+        insert_at = None
+        for field_name in ("pmid", "doi", "year"):
+            for index, line in enumerate(lines):
+                if re.match(rf"\s*{field_name}\s*=", line):
+                    insert_at = index + 1
+                    break
+            if insert_at is not None:
+                break
+        if insert_at is None:
+            continue
+        lines.insert(insert_at, f"  abstract={{{escape_bibtex(abstract)}}},\n")
+        replacement = "".join(lines)
+        bib_content = bib_content[:match.start()] + replacement + bib_content[match.end():]
+    return bib_content
+
+
+def backfill_missing_abstracts():
+    """Backfill existing entries from PubMed, PMC, then OpenAlex."""
+    bib_content = BIB_FILE.read_text(encoding="utf-8")
+    entries = missing_abstract_entries(bib_content)
+    print(f"\nExisting public papers missing abstracts: {len(entries)}")
+    if not entries:
+        return 0
+
+    by_pmid = {entry["pmid"]: entry for entry in entries if entry["pmid"]}
+    pubmed_records = {}
+    pmcids = {}
+    pmids = list(by_pmid)
+    for index in range(0, len(pmids), 50):
+        root = pubmed_fetch(pmids[index:index + 50])
+        for record in root.findall(".//PubmedArticle"):
+            pmid = record.findtext("./MedlineCitation/PMID", "")
+            article = record.find("./MedlineCitation/Article")
+            pubmed_records[pmid] = extract_abstract_text(article) if article is not None else ""
+            for article_id in record.findall("./PubmedData/ArticleIdList/ArticleId"):
+                if article_id.get("IdType") == "pmc" and article_id.text:
+                    pmcids[pmid] = article_id.text
+                    break
+        time.sleep(0.4)
+
+    abstracts = {}
+    sources = {}
+    for entry in entries:
+        abstract = pubmed_records.get(entry["pmid"], "")
+        if abstract:
+            abstracts[entry["key"]] = abstract
+            sources[entry["key"]] = "PubMed"
+
+    for entry in entries:
+        if entry["key"] in abstracts:
+            continue
+        pmcid = pmcids.get(entry["pmid"], "")
+        if pmcid:
+            abstract = fetch_pmc_abstract(pmcid)
+            if abstract:
+                abstracts[entry["key"]] = abstract
+                sources[entry["key"]] = "PMC"
+            time.sleep(0.2)
+
+    for entry in entries:
+        if entry["key"] in abstracts or not openalex_fallback_allowed(entry):
+            continue
+        abstract = fetch_openalex_abstract(entry["doi"])
+        if abstract:
+            abstracts[entry["key"]] = abstract
+            sources[entry["key"]] = "OpenAlex"
+        time.sleep(0.12)
+
+    if not abstracts:
+        print("No authoritative abstracts are currently available for backfill.")
+        return 0
+
+    updated_content = insert_abstracts(bib_content, abstracts)
+    BIB_FILE.write_text(updated_content, encoding="utf-8")
+    for key in abstracts:
+        print(f"  + {key}: abstract from {sources[key]}")
+    unresolved = len(entries) - len(abstracts)
+    print(f"Backfilled {len(abstracts)} abstract(s); {unresolved} remain unavailable upstream.")
+    return len(abstracts)
+
+
 def format_bibtex_entry(paper):
     """Format a paper as a BibTeX entry."""
     key = generate_bib_key(paper)
@@ -335,9 +551,21 @@ def format_bibtex_entry(paper):
 # ── Main ──
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--backfill-only",
+        action="store_true",
+        help="Backfill missing abstracts without searching for new publications.",
+    )
+    args = parser.parse_args()
+
     print("=" * 60)
     print("Li Lab Publication Fetcher")
     print("=" * 60)
+
+    backfill_missing_abstracts()
+    if args.backfill_only:
+        return 0
 
     # Load data
     members = load_member_names()
