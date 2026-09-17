@@ -11,14 +11,10 @@
 
 <p align="center">
   <a href="https://github.com/xy-lilab/xy-lilab.github.io/actions/workflows/deploy.yml"><img src="https://github.com/xy-lilab/xy-lilab.github.io/actions/workflows/deploy.yml/badge.svg?branch=main" alt="Deploy site"></a>
-  <a href="https://jekyllrb.com/"><img src="https://img.shields.io/badge/Jekyll-4.4-a72126?style=flat-square&amp;logo=jekyll&amp;logoColor=white" alt="Jekyll 4.4"></a>
-  <a href="https://pages.github.com/"><img src="https://img.shields.io/badge/Hosting-GitHub%20Pages-0852a2?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Hosted on GitHub Pages"></a>
-  <a href="README.zh.md"><img src="https://img.shields.io/badge/Language-EN%20%2F%20中文-0852a2?style=flat-square" alt="English and Chinese"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-555555?style=flat-square" alt="MIT License"></a>
-</p>
-
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Source+Sans+3&amp;size=21&amp;duration=2800&amp;pause=2200&amp;color=A72126&amp;center=true&amp;vCenter=true&amp;width=760&amp;height=44&amp;lines=Rosacea+and+Hidradenitis+Suppurativa%3BHair+Disorders+and+Regeneration%3BSkin+Aging" alt="Rosacea and Hidradenitis Suppurativa · Hair Disorders and Regeneration · Skin Aging">
+  <a href="https://jekyllrb.com/"><img src="https://img.shields.io/badge/Jekyll-4.4-a72126?style=flat&amp;logo=jekyll&amp;logoColor=white" alt="Jekyll 4.4"></a>
+  <a href="https://pages.github.com/"><img src="https://img.shields.io/badge/Hosting-GitHub%20Pages-0852a2?style=flat&amp;logo=github&amp;logoColor=white" alt="Hosted on GitHub Pages"></a>
+  <a href="README.zh.md"><img src="https://img.shields.io/badge/Language-EN%20%2F%20中文-0852a2?style=flat" alt="English and Chinese"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-555555?style=flat" alt="MIT License"></a>
 </p>
 
 <p align="center">
