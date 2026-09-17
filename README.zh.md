@@ -1,6 +1,4 @@
-<p align="center">
-  <a href="https://www.xy-lilab.com/zh/"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3A0852a2%2C100%3Aa72126&amp;height=200&amp;section=header&amp;text=Li+Lab&amp;fontFamily=Georgia&amp;fontSize=64&amp;fontColor=ffffff&amp;fontAlignY=37&amp;desc=Dermatology+%C2%B7+Molecular+Biology&amp;descSize=19&amp;descAlignY=59" alt="Li Lab — Dermatology and Molecular Biology" width="100%"></a>
-</p>
+<h1 align="center">Li 实验室</h1>
 
 <p align="center">
   <strong>中南大学湘雅医院 · Li 实验室</strong><br>
@@ -14,7 +12,7 @@
   <a href="https://jekyllrb.com/"><img src="https://img.shields.io/badge/Jekyll-4.4-a72126?style=flat&amp;logo=jekyll&amp;logoColor=white" alt="Jekyll 4.4"></a>
   <a href="https://pages.github.com/"><img src="https://img.shields.io/badge/Hosting-GitHub%20Pages-0852a2?style=flat&amp;logo=github&amp;logoColor=white" alt="Hosted on GitHub Pages"></a>
   <a href="README.md"><img src="https://img.shields.io/badge/Language-EN%20%2F%20中文-0852a2?style=flat" alt="English and Chinese"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-555555?style=flat" alt="MIT License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2e7d32?style=flat" alt="MIT License"></a>
 </p>
 
 <p align="center">
@@ -49,9 +47,28 @@
 
 ## 技术栈
 
-<p>
-  <img src="https://skillicons.dev/icons?i=ruby,html,css,js,py,githubactions&amp;theme=light" alt="Ruby、HTML、CSS、JavaScript、Python、GitHub Actions" height="48">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" width="100">
+      <a href="https://www.ruby-lang.org/"><img src="https://skillicons.dev/icons?i=ruby&amp;theme=light" width="40" height="40" alt="Ruby"><br><sub>Ruby</sub></a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://developer.mozilla.org/docs/Web/HTML"><img src="https://skillicons.dev/icons?i=html&amp;theme=light" width="40" height="40" alt="HTML5"><br><sub>HTML5</sub></a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://developer.mozilla.org/docs/Web/CSS"><img src="https://skillicons.dev/icons?i=css&amp;theme=light" width="40" height="40" alt="CSS3"><br><sub>CSS3</sub></a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript"><img src="https://skillicons.dev/icons?i=js&amp;theme=light" width="40" height="40" alt="JavaScript"><br><sub>JavaScript</sub></a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://www.python.org/"><img src="https://skillicons.dev/icons?i=py&amp;theme=light" width="40" height="40" alt="Python"><br><sub>Python</sub></a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://github.com/features/actions"><img src="https://skillicons.dev/icons?i=githubactions&amp;theme=light" width="40" height="40" alt="Actions"><br><sub>Actions</sub></a>
+    </td>
+  </tr>
+</table>
 
 - [Jekyll](https://jekyllrb.com/) 4.4 静态站点生成器
 - [Jekyll-Scholar](https://github.com/inukshuk/jekyll-scholar) — 基于 BibTeX 的论文管理
