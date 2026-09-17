@@ -1,10 +1,35 @@
-# Li 实验室 — 中南大学湘雅医院
+<p align="center">
+  <a href="https://www.xy-lilab.com/zh/"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3A0852a2%2C100%3Aa72126&amp;height=200&amp;section=header&amp;text=Li+Lab&amp;fontFamily=Georgia&amp;fontSize=64&amp;fontColor=ffffff&amp;fontAlignY=37&amp;desc=Dermatology+%C2%B7+Molecular+Biology&amp;descSize=19&amp;descAlignY=59" alt="Li Lab — Dermatology and Molecular Biology" width="100%"></a>
+</p>
 
-**语言 / Language**: [English](README.md) | **简体中文**
+<p align="center">
+  <strong>中南大学湘雅医院 · Li 实验室</strong><br>
+  衰老生物学湖南省重点实验室 · 皮肤科
+</p>
 
-中南大学湘雅医院皮肤科 Li 实验室官方网站。
+<p align="center"><a href="README.md">English</a> · <strong>简体中文</strong></p>
 
-**线上站点**：[https://xy-lilab.github.io](https://xy-lilab.github.io)
+<p align="center">
+  <a href="https://github.com/xy-lilab/xy-lilab.github.io/actions/workflows/deploy.yml"><img src="https://github.com/xy-lilab/xy-lilab.github.io/actions/workflows/deploy.yml/badge.svg?branch=main" alt="Deploy site"></a>
+  <a href="https://jekyllrb.com/"><img src="https://img.shields.io/badge/Jekyll-4.4-a72126?style=flat-square&amp;logo=jekyll&amp;logoColor=white" alt="Jekyll 4.4"></a>
+  <a href="https://pages.github.com/"><img src="https://img.shields.io/badge/Hosting-GitHub%20Pages-0852a2?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Hosted on GitHub Pages"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/Language-EN%20%2F%20中文-0852a2?style=flat-square" alt="English and Chinese"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-555555?style=flat-square" alt="MIT License"></a>
+</p>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&amp;size=21&amp;duration=2800&amp;pause=2200&amp;color=A72126&amp;center=true&amp;vCenter=true&amp;width=760&amp;height=44&amp;lines=%E7%8E%AB%E7%91%B0%E7%97%A4%E7%96%AE%E4%B8%8E%E5%8C%96%E8%84%93%E6%80%A7%E6%B1%97%E8%85%BA%E7%82%8E%3B%E6%AF%9B%E5%8F%91%E7%96%BE%E7%97%85%E4%B8%8E%E5%86%8D%E7%94%9F%3B%E7%9A%AE%E8%82%A4%E8%A1%B0%E8%80%81" alt="玫瑰痤疮与化脓性汗腺炎 · 毛发疾病与再生 · 皮肤衰老">
+</p>
+
+<p align="center">
+  <a href="https://www.xy-lilab.com/zh/">访问网站</a> ·
+  <a href="https://www.xy-lilab.com/zh/research/">研究方向</a> ·
+  <a href="https://www.xy-lilab.com/zh/publications/">学术论文</a> ·
+  <a href="https://www.xy-lilab.com/zh/people/">研究团队</a> ·
+  <a href="https://www.xy-lilab.com/zh/join/">加入我们</a>
+</p>
+
+---
 
 ## 研究方向
 
@@ -27,6 +52,10 @@
 - 微信域名校验
 
 ## 技术栈
+
+<p>
+  <img src="https://skillicons.dev/icons?i=ruby,html,css,js,py,githubactions&amp;theme=light" alt="Ruby、HTML、CSS、JavaScript、Python、GitHub Actions" height="48">
+</p>
 
 - [Jekyll](https://jekyllrb.com/) 4.4 静态站点生成器
 - [Jekyll-Scholar](https://github.com/inukshuk/jekyll-scholar) — 基于 BibTeX 的论文管理

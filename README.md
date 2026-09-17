@@ -1,10 +1,35 @@
-# Li Lab — Xiangya Hospital, Central South University
+<p align="center">
+  <a href="https://www.xy-lilab.com/"><img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0%3A0852a2%2C100%3Aa72126&amp;height=200&amp;section=header&amp;text=Li+Lab&amp;fontFamily=Georgia&amp;fontSize=64&amp;fontColor=ffffff&amp;fontAlignY=37&amp;desc=Dermatology+%C2%B7+Molecular+Biology&amp;descSize=19&amp;descAlignY=59" alt="Li Lab — Dermatology and Molecular Biology" width="100%"></a>
+</p>
 
-**Language / 语言**: **English** | [简体中文](README.zh.md)
+<p align="center">
+  <strong>Xiangya Hospital · Central South University</strong><br>
+  Department of Dermatology · Hunan Key Laboratory of Aging Biology
+</p>
 
-Official website for the Li Lab, Department of Dermatology, Xiangya Hospital, Central South University.
+<p align="center"><strong>English</strong> · <a href="README.zh.md">简体中文</a></p>
 
-**Live site**: [https://xy-lilab.github.io](https://xy-lilab.github.io)
+<p align="center">
+  <a href="https://github.com/xy-lilab/xy-lilab.github.io/actions/workflows/deploy.yml"><img src="https://github.com/xy-lilab/xy-lilab.github.io/actions/workflows/deploy.yml/badge.svg?branch=main" alt="Deploy site"></a>
+  <a href="https://jekyllrb.com/"><img src="https://img.shields.io/badge/Jekyll-4.4-a72126?style=flat-square&amp;logo=jekyll&amp;logoColor=white" alt="Jekyll 4.4"></a>
+  <a href="https://pages.github.com/"><img src="https://img.shields.io/badge/Hosting-GitHub%20Pages-0852a2?style=flat-square&amp;logo=github&amp;logoColor=white" alt="Hosted on GitHub Pages"></a>
+  <a href="README.zh.md"><img src="https://img.shields.io/badge/Language-EN%20%2F%20中文-0852a2?style=flat-square" alt="English and Chinese"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-555555?style=flat-square" alt="MIT License"></a>
+</p>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Source+Sans+3&amp;size=21&amp;duration=2800&amp;pause=2200&amp;color=A72126&amp;center=true&amp;vCenter=true&amp;width=760&amp;height=44&amp;lines=Rosacea+and+Hidradenitis+Suppurativa%3BHair+Disorders+and+Regeneration%3BSkin+Aging" alt="Rosacea and Hidradenitis Suppurativa · Hair Disorders and Regeneration · Skin Aging">
+</p>
+
+<p align="center">
+  <a href="https://www.xy-lilab.com/">Visit website</a> ·
+  <a href="https://www.xy-lilab.com/research/">Research</a> ·
+  <a href="https://www.xy-lilab.com/publications/">Publications</a> ·
+  <a href="https://www.xy-lilab.com/people/">People</a> ·
+  <a href="https://www.xy-lilab.com/join/">Join us</a>
+</p>
+
+---
 
 ## Research
 
@@ -27,6 +52,10 @@ The lab focuses on three major directions:
 - WeChat domain verification
 
 ## Tech Stack
+
+<p>
+  <img src="https://skillicons.dev/icons?i=ruby,html,css,js,py,githubactions&amp;theme=light" alt="Ruby, HTML, CSS, JavaScript, Python, GitHub Actions" height="48">
+</p>
 
 - [Jekyll](https://jekyllrb.com/) 4.4 static site generator
 - [Jekyll-Scholar](https://github.com/inukshuk/jekyll-scholar) for BibTeX-based publication management
