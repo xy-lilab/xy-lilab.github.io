@@ -1,7 +1,7 @@
-<h1 align="center">Li 实验室</h1>
+<h1 align="center">Li Lab</h1>
 
 <p align="center">
-  <strong>中南大学湘雅医院 · Li 实验室</strong><br>
+  <strong>中南大学湘雅医院 · Li Lab</strong><br>
   衰老生物学湖南省重点实验室 · 皮肤科
 </p>
 
