@@ -55,6 +55,10 @@ publications:
   abstract: Abstract
   abstract_unavailable: An abstract is not currently available here.
   view_publisher: Please see the publisher’s article.
+  filter_direction: Research direction
+  filter_subtype: Research subtype
+  filter_type: Publication type
+  filter_scope: Research scope
 
 projects:
   page_title: Research

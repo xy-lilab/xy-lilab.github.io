@@ -52,6 +52,10 @@ publications:
   abstract: 摘要
   abstract_unavailable: 本站暂未收录摘要。
   view_publisher: 请查看出版社原文。
+  filter_direction: 研究方向
+  filter_subtype: 研究亚类
+  filter_type: 论文类型
+  filter_scope: 研究属性
 
 projects:
   page_title: 研究方向
