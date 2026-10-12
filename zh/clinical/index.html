@@ -59,16 +59,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&amp;family=Noto+Serif+SC:wght@500;700&amp;family=Source+Sans+3:wght@400;600;700&amp;family=Merriweather:wght@400;700;900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="/assets/css/v2-home.css?v=1791775068">
+<link rel="stylesheet" href="/assets/css/v2-home.css?v=1791775833">
 
   
   
-  <link rel="stylesheet" href="/assets/css/academicons.min.css?v=1791775068">
+  <link rel="stylesheet" href="/assets/css/academicons.min.css?v=1791775833">
   
-  <link rel="stylesheet" href="/assets/css/v2-pages.css?v=1791775068">
+  <link rel="stylesheet" href="/assets/css/v2-pages.css?v=1791775833">
   
 
-<link rel="stylesheet" href="/assets/css/v2-print.css?v=1791775068" media="print">
+<link rel="stylesheet" href="/assets/css/v2-print.css?v=1791775833" media="print">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MCX316G25G"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MCX316G25G');</script>
@@ -141,45 +141,53 @@
   <div class="bib-filters">
     <input type="text" id="bibsearch" spellcheck="false" autocomplete="off" class="bib-filters__search" placeholder="输入关键词筛选...">
     <div class="bib-filters__row">
-      <select id="bibfilter-category" class="bib-filters__select" aria-label="研究方向">
-        <option value="">全部方向</option>
-        <option value="pilosebaceous">毛囊皮脂腺疾病</option>
-        <option value="aging">衰老</option>
-        <option value="other_dermatology">其他皮肤病</option>
-      </select>
-      <select id="bibfilter-subcategory" class="bib-filters__select" aria-label="研究亚类">
-        <option value="">全部亚类</option>
-        <option value="rosacea">玫瑰痤疮</option>
-        <option value="hair_disorders">脱发/毛发疾病</option>
-        <option value="acne">痤疮</option>
-        <option value="skin_aging">皮肤衰老</option>
-        <option value="systemic_aging">系统性衰老</option>
-        <option value="wound_healing">创面修复</option>
-        <option value="psoriasis">银屑病</option>
-        <option value="skin_cancer">皮肤肿瘤</option>
-        <option value="atopic_dermatitis">特应性皮炎</option>
-        <option value="vitiligo">白癜风</option>
-        <option value="other">其他</option>
-      </select>
-      <select id="bibfilter-type" class="bib-filters__select" aria-label="论文类型">
-        <option value="">全部类型</option>
-        <option value="original">原创研究</option>
-        <option value="review">综述</option>
-        <option value="clinical_trial">临床试验</option>
-        <option value="meta_analysis">荟萃分析</option>
-        <option value="case_report">个案报告</option>
-        <option value="letter">信函/评论</option>
-        <option value="consensus">共识/指南</option>
-      </select>
-      <select id="bibfilter-nature" class="bib-filters__select" aria-label="研究属性">
-        <option value="">基础 &amp; 临床</option>
-        <option value="basic">基础研究</option>
-        <option value="clinical">临床研究</option>
-      </select>
+      <span class="bib-filters__field">
+        <select id="bibfilter-category" class="bib-filters__select" aria-label="研究方向">
+          <option value="">全部方向</option>
+          <option value="pilosebaceous">毛囊皮脂腺疾病</option>
+          <option value="aging">衰老</option>
+          <option value="other_dermatology">其他皮肤病</option>
+        </select>
+      </span>
+      <span class="bib-filters__field">
+        <select id="bibfilter-subcategory" class="bib-filters__select" aria-label="研究亚类">
+          <option value="">全部亚类</option>
+          <option value="rosacea">玫瑰痤疮</option>
+          <option value="hair_disorders">脱发/毛发疾病</option>
+          <option value="acne">痤疮</option>
+          <option value="skin_aging">皮肤衰老</option>
+          <option value="systemic_aging">系统性衰老</option>
+          <option value="wound_healing">创面修复</option>
+          <option value="psoriasis">银屑病</option>
+          <option value="skin_cancer">皮肤肿瘤</option>
+          <option value="atopic_dermatitis">特应性皮炎</option>
+          <option value="vitiligo">白癜风</option>
+          <option value="other">其他</option>
+        </select>
+      </span>
+      <span class="bib-filters__field">
+        <select id="bibfilter-type" class="bib-filters__select" aria-label="论文类型">
+          <option value="">全部类型</option>
+          <option value="original">原创研究</option>
+          <option value="review">综述</option>
+          <option value="clinical_trial">临床试验</option>
+          <option value="meta_analysis">荟萃分析</option>
+          <option value="case_report">个案报告</option>
+          <option value="letter">信函/评论</option>
+          <option value="consensus">共识/指南</option>
+        </select>
+      </span>
+      <span class="bib-filters__field">
+        <select id="bibfilter-nature" class="bib-filters__select" aria-label="研究属性">
+          <option value="">基础 &amp; 临床</option>
+          <option value="basic">基础研究</option>
+          <option value="clinical">临床研究</option>
+        </select>
+      </span>
     </div>
     <div class="bib-filters__status" id="bibfilter-status"></div>
   </div>
-  <script src="/assets/js/bibsearch.js?v=1791775068" type="module"></script>
+  <script src="/assets/js/bibsearch.js?v=1791775833" type="module"></script>
 
 
   <div class="publications">

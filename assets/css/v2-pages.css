@@ -843,21 +843,51 @@ body.v2-body {
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+.bib-filters__field {
+  position: relative;
+  flex: 1;
+  min-width: 140px;
+  color: var(--v2-body);
+}
+.bib-filters__field::after {
+  content: "";
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
 .bib-filters__select {
-  padding: 0.45rem 0.7rem;
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0.45rem 2.2rem 0.45rem 0.7rem;
   font-size: 0.85rem;
+  line-height: 1.4;
   font-family: var(--v2-font-sans);
   border: 1px solid var(--v2-line);
   border-radius: var(--v2-radius);
   background: var(--v2-surface);
   color: var(--v2-body);
   cursor: pointer;
-  flex: 1;
-  min-width: 140px;
 }
 .bib-filters__select:focus {
   outline: none;
   border-color: var(--v2-accent);
+}
+@media (forced-colors: active) {
+  .bib-filters__select {
+    -webkit-appearance: auto;
+    appearance: auto;
+    padding-right: 0.7rem;
+  }
+  .bib-filters__field::after { display: none; }
 }
 .bib-filters__status {
   font-size: 0.82rem;
