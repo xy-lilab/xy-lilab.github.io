@@ -106,7 +106,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - navigation interactions (mobile menu toggle)
 - `assets/js/bibsearch.js`
   - publications-page search + multi-dimensional filtering
-  - progressively enhances the native bibliography selects into accessible select-only comboboxes, deriving options/values from the original selects and keeping dependent subtype choices synchronized; `v2-pages.css` owns the aligned trigger, chevron, and option panel
+  - reads the visible native bibliography selects and keeps dependent subtype choices synchronized; browser/OS controls own the arrow and menu interaction, while `v2-pages.css` owns only basic field styling
   - `_includes/bib_search.liquid` versions this module URL with the site's build timestamp, matching the shared asset-cache strategy
 
 ## Automation Scripts (Build-Side)
