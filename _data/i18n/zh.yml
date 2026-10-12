@@ -48,6 +48,10 @@ people:
 publications:
   page_title: 论文发表
   page_desc: 实验室发表论文。
+  read_more: 查看详情
+  abstract: 摘要
+  abstract_unavailable: 本站暂未收录摘要。
+  view_publisher: 请查看出版社原文。
 
 projects:
   page_title: 研究方向

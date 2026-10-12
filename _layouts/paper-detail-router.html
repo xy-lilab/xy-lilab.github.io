@@ -7,6 +7,7 @@
 </head>
 <body class="v2-body">
   {% assign publication_venue = page.entry.journal | default: page.entry.booktitle %}
+  {% assign publication_ui = site.data.i18n.en.publications %}
 
   {% include nav.liquid %}
 
@@ -24,17 +25,24 @@
       </header>
       <article class="v2-page__content">
         {% if page.entry.author %}
-          <p>{{ page.entry.author }}</p>
+          <p>{% include bib_authors.liquid entry=page.entry full=true %}</p>
         {% endif %}
         {% if page.entry.doi %}
           <p>
             <a href="https://doi.org/{{ page.entry.doi }}" target="_blank" rel="noopener noreferrer">doi:{{ page.entry.doi }}</a>
           </p>
         {% endif %}
+        <hr>
+        <h2>{{ publication_ui.abstract }}</h2>
         {% if page.entry.abstract %}
-          <hr>
-          <h2>Abstract</h2>
           <p>{{ page.entry.abstract }}</p>
+        {% else %}
+          <p>
+            {{ publication_ui.abstract_unavailable }}
+            {% if page.entry.doi %}
+              <a href="https://doi.org/{{ page.entry.doi }}" target="_blank" rel="noopener noreferrer">{{ publication_ui.view_publisher }}</a>
+            {% endif %}
+          </p>
         {% endif %}
         <p class="v2-member-detail__back">
           <a href="#" onclick="event.preventDefault(); if(document.referrer && document.referrer.includes(location.hostname)){history.back();}else{location.href='{{ '/publications/' | relative_url }}';}">&larr; Back to publications</a>

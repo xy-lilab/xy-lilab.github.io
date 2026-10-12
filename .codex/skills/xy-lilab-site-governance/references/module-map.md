@@ -72,6 +72,8 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - footer content and institutional anchor
 - `_includes/bib_search.liquid`
   - publication search/filter UI used on the publications page
+- `_includes/bib_authors.liquid`
+  - shared parsed-author renderer for bibliography list items and detail pages; details always show every author, while lists retain the configured expansion behavior
 
 ## Pages
 
@@ -141,7 +143,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - If the change is bilingual UI copy, edit `_data/i18n/zh.yml` (and `en.yml` where applicable) rather than hardcoding strings in layouts.
 - If the change is a navigation taxonomy change, update `_includes/nav.liquid` for both languages and update the skill first.
 - If the change touches publication rendering (list or detail), update `_layouts/bib.liquid` or `_layouts/paper-detail-router.html` — and update the skill first when rendering rules change.
-- Publication-list `Read more` links are shown only when the bibliography entry has an abstract; the title/DOI remains the outward publisher route when no abstract exists.
+- Every visible publication has a `Read more` / `查看详情` link, independent of abstract availability. The detail page renders the stored abstract or an explicit unavailable message with a publisher route; the title/DOI remains the outward publisher route. Abstracts remain genuine source text stored in `papers.bib`, not generated summaries or UI placeholders.
 - Correction, erratum, and corrigendum records are excluded from `papers.bib` entirely, because even hidden jekyll-scholar entries generate public detail routes; `scripts/fetch_publications.py` skips them before append.
 - Automation scripts are shared by humans and scheduled workflows. Keep their CLI contract and output location stable.
 
