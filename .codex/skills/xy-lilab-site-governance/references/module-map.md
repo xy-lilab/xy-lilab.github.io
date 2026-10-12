@@ -72,7 +72,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - `_includes/footer.liquid`
   - footer content and institutional anchor
 - `_includes/bib_search.liquid`
-  - publication search/filter UI used on the publications page
+  - publication search/filter UI used on the publications page; each native select has a presentation-only wrapper for its decorative chevron
 - `_includes/bib_authors.liquid`
   - shared parsed-author renderer for bibliography list items and detail pages; details always show every author, while lists retain the configured expansion behavior
 
@@ -106,7 +106,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - navigation interactions (mobile menu toggle)
 - `assets/js/bibsearch.js`
   - publications-page search + multi-dimensional filtering
-  - reads the visible native bibliography selects and keeps dependent subtype choices synchronized; browser/OS controls own the arrow and menu interaction, while `v2-pages.css` owns only basic field styling
+  - reads the visible native bibliography selects and keeps dependent subtype choices synchronized; browser/OS controls own menu interaction, while `v2-pages.css` owns field styling and the closed-field decorative chevron
   - `_includes/bib_search.liquid` versions this module URL with the site's build timestamp, matching the shared asset-cache strategy
 
 ## Automation Scripts (Build-Side)

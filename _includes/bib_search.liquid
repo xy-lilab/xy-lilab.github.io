@@ -3,41 +3,49 @@
   <div class="bib-filters">
     <input type="text" id="bibsearch" spellcheck="false" autocomplete="off" class="bib-filters__search" placeholder="{% if lang == 'zh' %}输入关键词筛选...{% else %}Search by title, author, keyword...{% endif %}">
     <div class="bib-filters__row">
-      <select id="bibfilter-category" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_direction }}">
-        <option value="">{% if lang == 'zh' %}全部方向{% else %}All directions{% endif %}</option>
-        <option value="pilosebaceous">{% if lang == 'zh' %}毛囊皮脂腺疾病{% else %}Pilosebaceous diseases{% endif %}</option>
-        <option value="aging">{% if lang == 'zh' %}衰老{% else %}Aging{% endif %}</option>
-        <option value="other_dermatology">{% if lang == 'zh' %}其他皮肤病{% else %}Other dermatology{% endif %}</option>
-      </select>
-      <select id="bibfilter-subcategory" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_subtype }}">
-        <option value="">{% if lang == 'zh' %}全部亚类{% else %}All subtypes{% endif %}</option>
-        <option value="rosacea">{% if lang == 'zh' %}玫瑰痤疮{% else %}Rosacea{% endif %}</option>
-        <option value="hair_disorders">{% if lang == 'zh' %}脱发/毛发疾病{% else %}Hair disorders{% endif %}</option>
-        <option value="acne">{% if lang == 'zh' %}痤疮{% else %}Acne{% endif %}</option>
-        <option value="skin_aging">{% if lang == 'zh' %}皮肤衰老{% else %}Skin aging{% endif %}</option>
-        <option value="systemic_aging">{% if lang == 'zh' %}系统性衰老{% else %}Systemic aging{% endif %}</option>
-        <option value="wound_healing">{% if lang == 'zh' %}创面修复{% else %}Wound healing{% endif %}</option>
-        <option value="psoriasis">{% if lang == 'zh' %}银屑病{% else %}Psoriasis{% endif %}</option>
-        <option value="skin_cancer">{% if lang == 'zh' %}皮肤肿瘤{% else %}Skin cancer{% endif %}</option>
-        <option value="atopic_dermatitis">{% if lang == 'zh' %}特应性皮炎{% else %}Atopic dermatitis{% endif %}</option>
-        <option value="vitiligo">{% if lang == 'zh' %}白癜风{% else %}Vitiligo{% endif %}</option>
-        <option value="other">{% if lang == 'zh' %}其他{% else %}Other{% endif %}</option>
-      </select>
-      <select id="bibfilter-type" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_type }}">
-        <option value="">{% if lang == 'zh' %}全部类型{% else %}All types{% endif %}</option>
-        <option value="original">{% if lang == 'zh' %}原创研究{% else %}Original research{% endif %}</option>
-        <option value="review">{% if lang == 'zh' %}综述{% else %}Review{% endif %}</option>
-        <option value="clinical_trial">{% if lang == 'zh' %}临床试验{% else %}Clinical trial{% endif %}</option>
-        <option value="meta_analysis">{% if lang == 'zh' %}荟萃分析{% else %}Meta-analysis{% endif %}</option>
-        <option value="case_report">{% if lang == 'zh' %}个案报告{% else %}Case report{% endif %}</option>
-        <option value="letter">{% if lang == 'zh' %}信函/评论{% else %}Letter / Comment{% endif %}</option>
-        <option value="consensus">{% if lang == 'zh' %}共识/指南{% else %}Consensus / Guideline{% endif %}</option>
-      </select>
-      <select id="bibfilter-nature" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_scope }}">
-        <option value="">{% if lang == 'zh' %}基础 & 临床{% else %}Basic & Clinical{% endif %}</option>
-        <option value="basic">{% if lang == 'zh' %}基础研究{% else %}Basic research{% endif %}</option>
-        <option value="clinical">{% if lang == 'zh' %}临床研究{% else %}Clinical research{% endif %}</option>
-      </select>
+      <span class="bib-filters__field">
+        <select id="bibfilter-category" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_direction }}">
+          <option value="">{% if lang == 'zh' %}全部方向{% else %}All directions{% endif %}</option>
+          <option value="pilosebaceous">{% if lang == 'zh' %}毛囊皮脂腺疾病{% else %}Pilosebaceous diseases{% endif %}</option>
+          <option value="aging">{% if lang == 'zh' %}衰老{% else %}Aging{% endif %}</option>
+          <option value="other_dermatology">{% if lang == 'zh' %}其他皮肤病{% else %}Other dermatology{% endif %}</option>
+        </select>
+      </span>
+      <span class="bib-filters__field">
+        <select id="bibfilter-subcategory" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_subtype }}">
+          <option value="">{% if lang == 'zh' %}全部亚类{% else %}All subtypes{% endif %}</option>
+          <option value="rosacea">{% if lang == 'zh' %}玫瑰痤疮{% else %}Rosacea{% endif %}</option>
+          <option value="hair_disorders">{% if lang == 'zh' %}脱发/毛发疾病{% else %}Hair disorders{% endif %}</option>
+          <option value="acne">{% if lang == 'zh' %}痤疮{% else %}Acne{% endif %}</option>
+          <option value="skin_aging">{% if lang == 'zh' %}皮肤衰老{% else %}Skin aging{% endif %}</option>
+          <option value="systemic_aging">{% if lang == 'zh' %}系统性衰老{% else %}Systemic aging{% endif %}</option>
+          <option value="wound_healing">{% if lang == 'zh' %}创面修复{% else %}Wound healing{% endif %}</option>
+          <option value="psoriasis">{% if lang == 'zh' %}银屑病{% else %}Psoriasis{% endif %}</option>
+          <option value="skin_cancer">{% if lang == 'zh' %}皮肤肿瘤{% else %}Skin cancer{% endif %}</option>
+          <option value="atopic_dermatitis">{% if lang == 'zh' %}特应性皮炎{% else %}Atopic dermatitis{% endif %}</option>
+          <option value="vitiligo">{% if lang == 'zh' %}白癜风{% else %}Vitiligo{% endif %}</option>
+          <option value="other">{% if lang == 'zh' %}其他{% else %}Other{% endif %}</option>
+        </select>
+      </span>
+      <span class="bib-filters__field">
+        <select id="bibfilter-type" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_type }}">
+          <option value="">{% if lang == 'zh' %}全部类型{% else %}All types{% endif %}</option>
+          <option value="original">{% if lang == 'zh' %}原创研究{% else %}Original research{% endif %}</option>
+          <option value="review">{% if lang == 'zh' %}综述{% else %}Review{% endif %}</option>
+          <option value="clinical_trial">{% if lang == 'zh' %}临床试验{% else %}Clinical trial{% endif %}</option>
+          <option value="meta_analysis">{% if lang == 'zh' %}荟萃分析{% else %}Meta-analysis{% endif %}</option>
+          <option value="case_report">{% if lang == 'zh' %}个案报告{% else %}Case report{% endif %}</option>
+          <option value="letter">{% if lang == 'zh' %}信函/评论{% else %}Letter / Comment{% endif %}</option>
+          <option value="consensus">{% if lang == 'zh' %}共识/指南{% else %}Consensus / Guideline{% endif %}</option>
+        </select>
+      </span>
+      <span class="bib-filters__field">
+        <select id="bibfilter-nature" class="bib-filters__select" aria-label="{{ site.data.i18n[lang].publications.filter_scope }}">
+          <option value="">{% if lang == 'zh' %}基础 & 临床{% else %}Basic & Clinical{% endif %}</option>
+          <option value="basic">{% if lang == 'zh' %}基础研究{% else %}Basic research{% endif %}</option>
+          <option value="clinical">{% if lang == 'zh' %}临床研究{% else %}Clinical research{% endif %}</option>
+        </select>
+      </span>
     </div>
     <div class="bib-filters__status" id="bibfilter-status"></div>
   </div>
