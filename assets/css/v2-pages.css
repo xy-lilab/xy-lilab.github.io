@@ -812,8 +812,7 @@ body.v2-body {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 @media (hover: hover) {
-  .bib-filters__select:hover,
-  .bib-filter__trigger:hover {
+  .bib-filters__select:hover {
     border-color: var(--v2-accent);
   }
   .bib-filters__search input:hover {
@@ -844,8 +843,7 @@ body.v2-body {
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-.bib-filters__select,
-.bib-filter__trigger {
+.bib-filters__select {
   padding: 0.45rem 0.7rem;
   font-size: 0.85rem;
   font-family: var(--v2-font-sans);
@@ -857,80 +855,9 @@ body.v2-body {
   flex: 1;
   min-width: 140px;
 }
-.bib-filters__select:focus,
-.bib-filter__trigger:focus-visible,
-.bib-filter__trigger[aria-expanded="true"] {
+.bib-filters__select:focus {
   outline: none;
   border-color: var(--v2-accent);
-}
-.bib-filter {
-  position: relative;
-  flex: 1;
-  min-width: 140px;
-}
-.bib-filter__trigger {
-  appearance: none;
-  display: block;
-  position: relative;
-  width: 100%;
-  min-width: 0;
-  min-height: 2.5rem;
-  padding-right: 2.2rem;
-  line-height: 1.4;
-  text-align: left;
-}
-.bib-filter__trigger::after {
-  content: "";
-  position: absolute;
-  right: 0.85rem;
-  top: 50%;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-70%) rotate(45deg);
-  pointer-events: none;
-}
-.bib-filter__value {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.bib-filter__options {
-  position: absolute;
-  z-index: 20;
-  top: calc(100% + 0.25rem);
-  left: 0;
-  right: 0;
-  max-height: min(18rem, 40vh);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 0.25rem;
-  background: var(--v2-surface);
-  border: 1px solid var(--v2-line);
-  border-radius: var(--v2-radius);
-  font-family: var(--v2-font-sans);
-  font-size: 0.85rem;
-  line-height: 1.4;
-  text-align: left;
-  -webkit-hyphens: none;
-  hyphens: none;
-}
-.bib-filter__options[hidden] { display: none; }
-.bib-filter__option {
-  padding: 0.55rem 0.45rem;
-  overflow-wrap: anywhere;
-  cursor: pointer;
-}
-.bib-filter__option[aria-selected="true"] {
-  color: var(--v2-accent);
-  font-weight: 600;
-}
-.bib-filter__option.is-active {
-  background: var(--v2-accent-soft);
-  outline: 1px solid var(--v2-accent);
-  outline-offset: -1px;
 }
 .bib-filters__status {
   font-size: 0.82rem;
