@@ -3,6 +3,7 @@
 {%- comment -%} Website shows 2020+ only; pre-2020 entries stay in papers.bib (queryable / archival) but are not rendered. Entries may also opt out with web_show={false}. {%- endcomment -%}
 {% assign _web_year = entry.year | plus: 0 %}
 {% if _web_year >= 2020 and entry.web_show != "false" %}
+{% assign publication_detail_url = entry.key | prepend: '/bibliography/' | append: '/' | relative_url %}
 {% assign has_preview = false %}
 {% if site.enable_publication_thumbnails and entry.preview and page.hide_publication_thumbnails != true %}
   {% assign has_preview = true %}
@@ -51,8 +52,8 @@
     <div class="bib-content">
       <div class="bib-main">
         <h2 class="bib-title">
-          {% if entry.doi %}
-            <a href="https://doi.org/{{ entry.doi }}">{{ entry.title }}</a>
+          {% if entry.key %}
+            <a href="{{ publication_detail_url }}">{{ entry.title }}</a>
           {% else %}
             <span>{{ entry.title }}</span>
           {% endif %}
@@ -77,7 +78,7 @@
       {% if entry.key %}
         {% assign publication_lang = page.lang | default: 'en' %}
         <div class="bib-actions">
-          <a class="bib-link" href="{{ entry.key | prepend: '/bibliography/' | prepend: site.baseurl }}">{{ site.data.i18n[publication_lang].publications.read_more }}</a>
+          <a class="bib-link" href="{{ publication_detail_url }}">{{ site.data.i18n[publication_lang].publications.read_more }}</a>
         </div>
       {% endif %}
     </div>

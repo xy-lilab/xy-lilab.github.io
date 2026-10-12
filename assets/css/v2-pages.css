@@ -40,6 +40,31 @@ body.v2-body {
   line-height: 1.6;
 }
 
+/* Paper titles need room for long, multiline scientific names. */
+.v2-page--paper .v2-page__header {
+  display: grid;
+  gap: 0.75rem;
+}
+.v2-page--paper .v2-page__lead {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.v2-page--paper .v2-page__title {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  overflow-wrap: break-word;
+}
+.v2-page--paper .v2-paper__authors {
+  text-align: left;
+}
+.v2-page--paper .v2-page__content h2 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
 /* ── Page Content (rich text) ── */
 .v2-page__content {
   font-family: var(--v2-font-body) !important;

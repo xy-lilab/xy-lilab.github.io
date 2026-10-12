@@ -61,6 +61,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - shared bibliography list-item renderer used by jekyll-scholar-driven publication listings; must stay version-neutral
 - `_layouts/paper-detail-router.html`
   - routes a DOI or bib key to the corresponding publication detail render
+  - applies `.v2-page--paper` for the scoped bibliographic header typography in `v2-pages.css`
 
 ## Shared Includes
 
@@ -143,7 +144,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - If the change is bilingual UI copy, edit `_data/i18n/zh.yml` (and `en.yml` where applicable) rather than hardcoding strings in layouts.
 - If the change is a navigation taxonomy change, update `_includes/nav.liquid` for both languages and update the skill first.
 - If the change touches publication rendering (list or detail), update `_layouts/bib.liquid` or `_layouts/paper-detail-router.html` — and update the skill first when rendering rules change.
-- Every visible publication has a `Read more` / `查看详情` link, independent of abstract availability. The detail page renders the stored abstract or an explicit unavailable message with a publisher route; the title/DOI remains the outward publisher route. Abstracts remain genuine source text stored in `papers.bib`, not generated summaries or UI placeholders.
+- Every visible publication's title and `Read more` / `查看详情` link share the internal bibliography detail URL, independent of abstract availability; the DOI is the outward publisher route. The detail page renders the stored abstract or an explicit unavailable message with a publisher route. Abstracts remain genuine source text stored in `papers.bib`, not generated summaries or UI placeholders.
 - Correction, erratum, and corrigendum records are excluded from `papers.bib` entirely, because even hidden jekyll-scholar entries generate public detail routes; `scripts/fetch_publications.py` skips them before append.
 - Automation scripts are shared by humans and scheduled workflows. Keep their CLI contract and output location stable.
 

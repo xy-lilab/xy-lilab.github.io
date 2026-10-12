@@ -12,7 +12,7 @@
   {% include nav.liquid %}
 
   <main>
-    <div class="v2-page">
+    <div class="v2-page v2-page--paper">
       <header class="v2-page__header">
         {% if publication_venue or page.entry.year %}
           <p class="v2-page__lead">
@@ -25,7 +25,7 @@
       </header>
       <article class="v2-page__content">
         {% if page.entry.author %}
-          <p>{% include bib_authors.liquid entry=page.entry full=true %}</p>
+          <p class="v2-paper__authors">{% include bib_authors.liquid entry=page.entry full=true %}</p>
         {% endif %}
         {% if page.entry.doi %}
           <p>

@@ -96,6 +96,7 @@
 - Publications are a core credibility feature, not a secondary archive.
 - Publication lists should prioritize scanning by title, authors, venue, year, and detail link. Preview thumbnails are optional; the dedicated Publications pages and the Clinical pages' embedded publication lists stay text-only where image coverage is sparse.
 - Detail pages should stay content-first and easy to read. Prefer a simple bibliographic header over dashboard-like metadata boxes.
+- Paper detail headers use a quieter scale than generic interior-page headings: a small muted, italic journal/year line, an explicit gap below it, and a medium-weight serif paper title with comfortable multiline leading. The title scales from about 24px on phones to 34px on larger screens; long titles and journal names wrap naturally. Abstract section headings remain smaller (about 20px), including on phones. Keep authors left-aligned. Scope these rules to `.v2-page--paper` so other page headings retain their existing hierarchy.
 - Filter UI on `/publications/` is driven by classification fields in `_bibliography/papers.bib` (`category`, `subcategory`, `publication_type`, `clinical`, `basic`). Do not invent new filter facets without updating the skill first.
 - Changes to bibliography rendering or paper-detail UX require a skill update first.
 
