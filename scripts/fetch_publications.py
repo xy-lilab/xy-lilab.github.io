@@ -8,7 +8,8 @@ never generated.
 
 Filters:
   1. Affiliation: Xiangya Hospital OR Central South University
-  2. Lab members must be first author OR corresponding (last) author
+  2. Listed first author must match a lab member's full name and lab affiliation
+     (co-first/corresponding-author roles require manual publisher verification)
   3. Only papers from 2020 onwards
   4. Skips papers already in the .bib file (by PMID)
 
@@ -70,8 +71,8 @@ AFFILIATIONS = [
     "Central South University",
 ]
 
-MIN_YEAR = 2026
 WEB_MIN_YEAR = 2020
+MIN_YEAR = WEB_MIN_YEAR
 SECONDARY_INDEX_EXCLUDED_PUBLICATION_TYPES = {
     "case_report",
     "correction",
@@ -111,19 +112,52 @@ def load_existing_ids():
     return pmids, dois
 
 
+def build_pubmed_query(members):
+    """Search roster authors across the complete public publication window."""
+    if not members:
+        raise ValueError("No lab members loaded; refusing an unscoped search")
+    author_terms = []
+    for name in members:
+        given, surname = name.rsplit(" ", 1)
+        author_terms.append(f'"{surname} {given}"[Author]')
+    authors = " OR ".join(author_terms)
+    affiliations = " OR ".join(f'"{a}"[Affiliation]' for a in AFFILIATIONS)
+    return f"({authors}) AND ({affiliations}) AND ({MIN_YEAR}:3000[Date - Publication])"
+
+
 def pubmed_search(query, retmax=2000):
-    """Search PubMed and return list of PMIDs."""
-    params = urllib.parse.urlencode({
-        "db": "pubmed",
-        "term": query,
-        "retmax": retmax,
-        "retmode": "json",
-        "sort": "date",
-    })
-    url = f"{PUBMED_ESEARCH}?{params}"
-    with urllib.request.urlopen(url, timeout=30) as resp:
-        data = json.loads(resp.read())
-    return data.get("esearchresult", {}).get("idlist", [])
+    """Return all matching PMIDs; retmax is a page size, not a total cap."""
+    if not 1 <= retmax <= 10000:
+        raise ValueError("PubMed page size must be between 1 and 10000")
+    pmids = []
+    total = None
+    while total is None or len(pmids) < total:
+        params = urllib.parse.urlencode({
+            "db": "pubmed",
+            "term": query,
+            "retstart": len(pmids),
+            "retmax": retmax,
+            "retmode": "json",
+            "sort": "pub date",
+        })
+        with urllib.request.urlopen(f"{PUBMED_ESEARCH}?{params}", timeout=30) as resp:
+            data = json.loads(resp.read())
+        result = data["esearchresult"]
+        count = int(result["count"])
+        if count > 10000:
+            raise RuntimeError("PubMed search exceeds its 10000-ID limit; narrow the query")
+        if total is not None and count != total:
+            raise RuntimeError("PubMed result count changed during pagination; retry the search")
+        total = count
+        batch = result["idlist"]
+        if len(batch) != min(retmax, total - len(pmids)):
+            raise RuntimeError("PubMed returned an incomplete result page")
+        pmids.extend(batch)
+        if len(set(pmids)) != len(pmids):
+            raise RuntimeError("PubMed returned duplicate IDs across result pages; retry the search")
+        if len(pmids) < total:
+            time.sleep(0.5)  # Stay below NCBI's unauthenticated rate limit.
+    return pmids
 
 
 def pubmed_fetch(pmids):
@@ -338,22 +372,23 @@ LAB_AFFILIATION_PATTERNS = [
 
 
 def member_is_key_author(authors, member_name):
-    """Check if a lab member is first or last (corresponding) author,
-    AND their affiliation matches our lab (dermatology/aging)."""
+    """Confirm a roster member is listed first, with their own lab affiliation.
+
+    PubMed author order does not establish corresponding authorship. Papers
+    qualifying only through co-first/corresponding roles need manual review.
+    """
     parts = member_name.strip().split()
     if len(parts) < 2:
         return False
     member_last = normalize_name(parts[-1])
-    member_first = normalize_name(parts[0])
+    member_first = normalize_name(" ".join(parts[:-1]))
 
     for author in authors:
-        if not (author["is_first"] or author["is_last"]):
+        if not author["is_first"]:
             continue
         author_last = normalize_name(author["last"])
         author_fore = normalize_name(author["fore"])
-        if author_last == member_last and (
-            author_fore.startswith(member_first) or member_first.startswith(author_fore)
-        ):
+        if author_last == member_last and author_fore == member_first:
             # Verify affiliation matches our lab specifically
             affil = author.get("affiliations", "")
             if affil:
@@ -407,9 +442,8 @@ def extract_paper_data(pubmed_article):
         f"{a['last']}, {a['initials']}." for a in authors
     )
 
-    # First and corresponding authors
+    # PubMed supplies ordered names, not reliable corresponding-author roles.
     first_authors = [f"{a['fore']} {a['last']}" for a in authors if a["is_first"]]
-    corresponding_authors = [f"{a['fore']} {a['last']}" for a in authors if a["is_last"]]
 
     return {
         "pmid": pmid,
@@ -427,7 +461,7 @@ def extract_paper_data(pubmed_article):
         "doi": doi,
         "author_str": author_str,
         "first_authors": "; ".join(first_authors),
-        "corresponding_authors": "; ".join(corresponding_authors),
+        "corresponding_authors": "",
         "authors": authors,
     }
 
@@ -436,7 +470,7 @@ def generate_bib_key(paper):
     """Generate a BibTeX key like 'li2026natcommun'."""
     first_last = ""
     if paper["authors"]:
-        first_last = paper["authors"][0]["last"].lower()
+        first_last = re.sub(r"[^a-z]", "", paper["authors"][0]["last"].lower())
     year = paper["year"]
     journal_word = re.sub(r"[^a-z]", "", paper["journal_abbrev"].lower())[:10]
     # Take first meaningful word from title
@@ -586,7 +620,8 @@ def format_bibtex_entry(paper):
     lines.append(f"  title={{{escape_bibtex(paper['title'])}}},")
     lines.append(f"  author={{{escape_bibtex(paper['author_str'])}}},")
     lines.append(f"  first_author={{{paper['first_authors']}}},")
-    lines.append(f"  corresponding_author={{{paper['corresponding_authors']}}},")
+    if paper.get("corresponding_authors"):
+        lines.append(f"  corresponding_author={{{paper['corresponding_authors']}}},")
     lines.append(f"  journal={{{paper['journal']}}},")
     lines.append(f"  year={{{paper['year']}}},")
     if paper["month"]:
@@ -665,9 +700,7 @@ def main():
     print(f"Existing papers in .bib: {len(existing_pmids)} PMIDs, {len(existing_dois)} DOIs")
 
     # Build PubMed query
-    affil_query = " OR ".join(f'"{a}"[Affiliation]' for a in AFFILIATIONS)
-    date_filter = f"{MIN_YEAR}:3000[Date - Publication]"
-    query = f"({affil_query}) AND ({date_filter})"
+    query = build_pubmed_query(members)
     print(f"\nPubMed query: {query}")
 
     # Search PubMed
@@ -702,7 +735,7 @@ def main():
             if paper["doi"] and paper["doi"].lower() in existing_dois:
                 continue
 
-            # Filter: lab member must be first or corresponding author
+            # Auto-include only verified listed first authors; other roles need review.
             matched_member = None
             for member in members:
                 if member_is_key_author(paper["authors"], member):
@@ -713,7 +746,8 @@ def main():
                 paper["matched_member"] = matched_member
                 new_papers.append(paper)
 
-    print(f"\nPapers with lab member as first/corresponding author: {len(new_papers)}")
+    print(f"\nPapers with verified lab first author: {len(new_papers)}")
+    print("Co-first/corresponding-author papers require manual publisher verification.")
 
     if not new_papers:
         print("No qualifying new papers found.")

@@ -113,6 +113,10 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 
 - `scripts/fetch_publications.py`
   - queries PubMed for new lab papers and appends classified BibTeX entries to `_bibliography/papers.bib`
+  - searches the full public publication window (2020 onward), scoped to roster author names plus institutional affiliations; late-indexed older publications must remain discoverable
+  - paginates ESearch results with the supported `pub date` sort, verifies that all matching IDs were retrieved, and fails explicitly rather than silently truncating results at a page/API limit
+  - automatically appends papers only when the listed first author's full name exactly matches a roster member and that author's own affiliation matches Xiangya dermatology or the aging-biology lab; surname/initial prefixes and last-author position are insufficient evidence
+  - co-first/corresponding-author papers require manual publisher verification when PubMed does not supply those roles; never infer or populate correspondence from last-author position
   - backfills missing abstracts on existing entries before searching for new papers, using PubMed first, PMC second, OpenAlex by DOI, and a batched Semantic Scholar DOI lookup last; all sources pass content-level rejection for correction notices, letter/editorial body text, data statements, and publisher disclaimers, while secondary-index fallback additionally excludes letters, editorials, corrections, and case reports; it never invents an abstract
   - joins every PubMed `AbstractText` section (including section labels) instead of keeping only the first structured-abstract section
   - impact factor + JCR quartile come from `scripts/jcr_lookup.py` (committed JCR data), not a third-party package or network call
