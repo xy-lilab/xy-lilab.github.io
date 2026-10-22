@@ -18,7 +18,8 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
 - `.github/workflows/fetch-publications.yml`
   - weekly abstract backfill plus PubMed → `papers.bib` append with auto-classification
 - `.github/workflows/update-citations.yml`
-  - weekly OpenAlex citation-count refresh
+  - weekly Wednesday 10:00 UTC (18:00 Asia/Taipei/Beijing) OpenAlex and WoS citation refresh; each source updates independently and retains its snapshot on API failure, while the workflow reports any failure instead of silently succeeding
+  - WoS authentication uses the repository Actions secret `WOS_API_KEY`; no plaintext key is committed or written to logs
 
 ## Source Of Truth: Structured Content
 
@@ -128,11 +129,14 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - keyword-based category / subcategory / publication-type / clinical / basic classifier used by `fetch_publications.py`
 - `scripts/update_citations.py`
   - refreshes citation counts from OpenAlex into `_data/citations.yml`
+  - timestamps the snapshot, treats a verified 404 as unmatched, and fails before writing on other API errors; BibTeX count updates are bounded to individual entries
 - `scripts/update_wos_citations.py`
-  - manual WoS refresh via the configured local `wos` CLI (credentials remain in local Keychain/config or the CLI's environment); no API key is stored in this repository or transferred to CI
+  - refreshes through `scripts/wos_client.py`, using `WOS_API_KEY` in Actions or the configured local Keychain for manual runs; `--wos-cli` remains an optional override
   - batches DOI queries, retrieves all result pages, verifies exact DOI matches, and atomically replaces `_data/wos_citations.yml` only after all queries succeed; optional raw response evidence stays outside the repository
   - resolves an Early Access/final-issue duplicate only when the normalized title, ordered author names, and WOS citation count agree across records and exactly one record has final volume/page metadata; stores the selected final UID plus alternate UIDs without adding their counts together
-  - OpenAlex's weekly workflow remains separate; WoS is refreshed manually until a separate scheduled credential setup is requested
+  - both sources run in the same weekly workflow and commit separate caches; unmatched records never borrow another database's count
+- `scripts/wos_client.py`
+  - shared stdlib Starter client with a fixed HTTPS Clarivate endpoint, redirect rejection, bounded retries, and credential-safe error messages; local Keychain details remain outside the repository
 - `scripts/jcr_lookup.py`
   - shared JCR impact-factor / quartile lookup over the committed data file (`scripts/data/jcr_2025.json`); stdlib only. Single matching implementation used by both `fetch_publications.py` (per paper, ISSN + name) and `refresh_impact_factors.py` (bulk, name only). Source of truth for impact factors.
 - `scripts/build_jcr_data.py`

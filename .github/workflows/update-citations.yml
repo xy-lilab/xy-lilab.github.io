@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: citation-refresh
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -21,13 +25,22 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run citation updater
-        run: python scripts/update_citations.py || true
+      - name: Update OpenAlex citation counts
+        id: openalex
+        continue-on-error: true
+        run: python scripts/update_citations.py
+
+      - name: Update WoS citation counts
+        id: wos
+        continue-on-error: true
+        env:
+          WOS_API_KEY: ${{ secrets.WOS_API_KEY }}
+        run: python scripts/update_wos_citations.py
 
       - name: Check for changes
         id: check
         run: |
-          if git diff --quiet _data/citations.yml _bibliography/papers.bib 2>/dev/null; then
+          if git diff --quiet _data/citations.yml _data/wos_citations.yml _bibliography/papers.bib; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT
@@ -38,6 +51,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add _data/citations.yml _bibliography/papers.bib
-          git commit -m "chore(auto): update citation counts from OpenAlex"
+          git add _data/citations.yml _data/wos_citations.yml _bibliography/papers.bib
+          git commit -m "chore(auto): refresh OpenAlex and WoS citation snapshots"
           git push
+
+      - name: Report source failures
+        if: always() && (steps.openalex.outcome == 'failure' || steps.wos.outcome == 'failure')
+        run: |
+          echo "A citation source failed. Its previous snapshot was preserved; inspect the source step."
+          exit 1

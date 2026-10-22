@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Refresh a separate WoS Core Collection snapshot via the configured local wos CLI.
+"""Refresh a separate WoS Core Collection snapshot in Actions or locally.
 
 Usage: python3 scripts/update_wos_citations.py [--evidence-dir /outside/repo/path]
-Authentication belongs to the CLI; this script never reads or stores an API key.
+Authentication uses WOS_API_KEY or the configured local Keychain.
 The existing OpenAlex cache and bibliography are not modified.
 """
 
@@ -18,6 +18,7 @@ import tempfile
 import time
 
 from update_citations import extract_dois_from_bib
+from wos_client import query_documents
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -37,17 +38,20 @@ def doi_query(entries):
     return "DO=(" + " OR ".join(f'"{doi}"' for doi in dois) + ")"
 
 
-def fetch_batch(entries, cli="wos", evidence_dir=None, batch_number=1):
+def fetch_batch(entries, cli=None, evidence_dir=None, batch_number=1):
     query = doi_query(entries)
     hits = []
     total = None
     page = 1
     while total is None or len(hits) < total:
-        result = subprocess.run(
-            [cli, "--query", query, "--limit", str(PAGE_SIZE), "--page", str(page)],
-            check=True, capture_output=True, text=True, timeout=120,
-        )
-        data = json.loads(result.stdout)
+        if cli:
+            result = subprocess.run(
+                [cli, "--query", query, "--limit", str(PAGE_SIZE), "--page", str(page)],
+                check=True, capture_output=True, text=True, timeout=120,
+            )
+            data = json.loads(result.stdout)
+        else:
+            data = query_documents(query, PAGE_SIZE, page)
         if data.get("_request", {}).get("database") != "WOS":
             raise ValueError("The local CLI must query the WOS database")
         count = data["metadata"]["total"]
@@ -151,7 +155,7 @@ def write_snapshot(records, retrieved_at, output=OUTPUT):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--wos-cli", default="wos", help="Configured local WoS CLI executable")
+    parser.add_argument("--wos-cli", help="Optional external WoS CLI override")
     parser.add_argument("--evidence-dir", type=Path, help="Save raw responses outside this repository")
     args = parser.parse_args()
     if args.evidence_dir:

@@ -1,6 +1,4 @@
 import io
-import json
-import subprocess
 import sys
 import unittest
 from unittest.mock import patch
@@ -49,14 +47,14 @@ class WoSCitationTests(unittest.TestCase):
         self.assertEqual(subject.match_records(self.entries, [early, final])["paper"]["status"], "ambiguous")
 
     @patch.object(subject.time, "sleep")
-    @patch.object(subject.subprocess, "run")
-    def test_all_result_pages_are_retrieved(self, run, sleep):
+    @patch.object(subject, "query_documents")
+    def test_all_result_pages_are_retrieved(self, query, sleep):
         hits = [self.hit(uid=f"WOS:{n}") for n in range(51)]
-        run.side_effect = [subprocess.CompletedProcess([], 0, json.dumps({
+        query.side_effect = [{
             "metadata": {"total": 51}, "hits": batch, "_request": {"database": "WOS"},
-        })) for batch in (hits[:50], hits[50:])]
+        } for batch in (hits[:50], hits[50:])]
         self.assertEqual(len(subject.fetch_batch(self.entries)), 51)
-        self.assertEqual(run.call_args_list[1].args[0][-1], "2")
+        self.assertEqual(query.call_args_list[1].args[-1], 2)
 
     @patch.object(subject, "write_snapshot")
     @patch.object(subject, "fetch_batch")
