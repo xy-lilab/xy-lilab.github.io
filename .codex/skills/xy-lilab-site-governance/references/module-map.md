@@ -32,6 +32,10 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - social/contact endpoints used on the site
 - `_data/citations.yml`
   - cached OpenAlex citation counts, written by `scripts/update_citations.py`
+- `_data/wos_citations.yml`
+  - separate Web of Science Core Collection (`WOS`) citation snapshot, keyed by the existing bibliography keys, with DOI, retrieval time, match status, WoS UID/link and count where available
+  - unmatched/ambiguous records and unavailable counts have no numeric citation value; never substitute OpenAlex counts or turn missing records into zero
+  - this snapshot does not replace OpenAlex's `citation_count` or change the currently hidden citation display
 - `_bibliography/papers.bib`
   - publication metadata. Classification fields (`category`, `subcategory`, `publication_type`, `clinical`, `basic`) drive the filtering UI on `/publications/` and the Chinese mirror. `impact_factor` / `jcr_quartile` (+ `sort_if`) come from JCR data via `scripts/jcr_lookup.py`. The old `cas_quartile` (中科院分区) field was removed — it was never displayed and is not maintained.
 - `scripts/data/jcr_2025.json`
@@ -124,6 +128,11 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - keyword-based category / subcategory / publication-type / clinical / basic classifier used by `fetch_publications.py`
 - `scripts/update_citations.py`
   - refreshes citation counts from OpenAlex into `_data/citations.yml`
+- `scripts/update_wos_citations.py`
+  - manual WoS refresh via the configured local `wos` CLI (credentials remain in local Keychain/config or the CLI's environment); no API key is stored in this repository or transferred to CI
+  - batches DOI queries, retrieves all result pages, verifies exact DOI matches, and atomically replaces `_data/wos_citations.yml` only after all queries succeed; optional raw response evidence stays outside the repository
+  - resolves an Early Access/final-issue duplicate only when the normalized title, ordered author names, and WOS citation count agree across records and exactly one record has final volume/page metadata; stores the selected final UID plus alternate UIDs without adding their counts together
+  - OpenAlex's weekly workflow remains separate; WoS is refreshed manually until a separate scheduled credential setup is requested
 - `scripts/jcr_lookup.py`
   - shared JCR impact-factor / quartile lookup over the committed data file (`scripts/data/jcr_2025.json`); stdlib only. Single matching implementation used by both `fetch_publications.py` (per paper, ISSN + name) and `refresh_impact_factors.py` (bulk, name only). Source of truth for impact factors.
 - `scripts/build_jcr_data.py`
