@@ -14,6 +14,7 @@ The site is a single-version Jekyll build rooted at `/` (English) and `/zh/` (Ch
   - Jekyll 4.4 and plugin pinning
 - `.github/workflows/deploy.yml`
   - builds the Jekyll site, caches ImageMagick WebP output and apt-installed ImageMagick, deploys to `gh-pages`
+  - the build/deploy job pins `ubuntu-24.04` with Ruby `3.3.5`; do not use `ubuntu-latest` for this pinned Ruby, because Ubuntu 26.04 does not provide that patch release
   - triggers on push/PR to `main`, manual dispatch, and on `workflow_run` completion of `Fetch new publications`. A lightweight `gate` job skips the build when that run produced no new commit (it compares the branch tip to `workflow_run.head_sha`), so empty fetch weeks do not redeploy. This chaining exists because the fetch workflow pushes with the default `GITHUB_TOKEN`, and GitHub deliberately does not surface `GITHUB_TOKEN` pushes as `push` events (recursion guard) — so without it, auto-fetched papers only reach the live site on the next human push. `Update citation counts` is intentionally NOT wired here: citation counts are hidden site-wide via CSS, so a rebuild has no visible effect (refreshed counts ride along on the next fetch/human deploy).
 - `.github/workflows/fetch-publications.yml`
   - weekly abstract backfill plus PubMed → `papers.bib` append with auto-classification
