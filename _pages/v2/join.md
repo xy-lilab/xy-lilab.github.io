@@ -7,7 +7,7 @@ description: Open positions and graduate admissions in the Li Lab — faculty-sc
 show_lead: false
 ---
 
-The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-scientists, postdocs, and technicians, as well as master's and doctoral students. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
+Prof. Ji Li’s lab recruits faculty-scientists, postdoctoral fellows, and research technicians year-round, and also welcomes applications from prospective master’s and doctoral students. We work at the interface of clinical dermatology and molecular biology, and we look for colleagues with integrity, a genuine commitment to research, a strong sense of responsibility, and a collaborative spirit.
 
 <div class="v2-join-grid">
   <div class="v2-join-col">
@@ -18,23 +18,23 @@ The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-
       <div class="v2-role">
         <div class="v2-role__head">
           <h3 class="v2-role__title">Associate / Assistant Researcher</h3>
-          <span class="v2-role__pay">¥300,000–500,000 pre-tax · tenured post</span>
+          <span class="v2-role__pay">¥300,000–500,000 per year, pre-tax · budgeted staff position (编制)</span>
         </div>
         <dl class="v2-role__meta">
           <dt>Who</dt>
-          <dd>A faculty-scientist on the PI track ready to build an independent research program — a PhD holder, age 35 or under, who has recently completed a doctorate or postdoc (including degrees earned or postdocs completed in 2025).</dd>
+          <dd>A faculty-scientist on the PI track ready to build an independent research program — a PhD holder, age 35 or under, who has completed a doctorate or postdoc.</dd>
           <dt>Background</dt>
           <dd>Molecular biology, cell biology, immunology, bioinformatics, laboratory animal science, or a related field.</dd>
           <dt>Bar</dt>
           <dd>Meets Xiangya Hospital's research-faculty hiring standard — for example, at least two high-level papers as first or corresponding author (including co-first / co-corresponding), evaluated per the hospital's academic-score criteria (绩分).</dd>
           <dt>Package</dt>
-          <dd>Directly employed as regular Xiangya Hospital staff; institutional achievement awards plus additional lab performance bonuses.</dd>
+          <dd>Regular Xiangya Hospital staff benefits and research start-up funding; career progression follows Central South University policy. Institutional achievement awards plus additional lab performance bonuses.</dd>
         </dl>
       </div>
       <div class="v2-role">
         <div class="v2-role__head">
           <h3 class="v2-role__title">Postdoctoral Fellow</h3>
-          <span class="v2-role__pay">¥300,000–400,000 pre-tax</span>
+          <span class="v2-role__pay">¥300,000–400,000 per year, pre-tax</span>
         </div>
         <dl class="v2-role__meta">
           <dt>Who</dt>
@@ -44,13 +44,13 @@ The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-
           <dt>Bar</dt>
           <dd>At least one JCR Q1 paper as first or corresponding author and a demonstrated capacity for independent research; graduates of leading universities and institutes (in China or abroad) are preferred.</dd>
           <dt>Package</dt>
-          <dd>Administered as a regular, directly-employed hospital staff member; research centers on the collaborating advisor's projects, funded primarily by the advisor. Institutional achievement awards plus additional lab performance bonuses.</dd>
+          <dd>Managed as a hospital staff member; research centers on the collaborating advisor's projects, funded primarily by the advisor. Institutional achievement awards plus additional lab performance bonuses.</dd>
         </dl>
       </div>
       <div class="v2-role">
         <div class="v2-role__head">
           <h3 class="v2-role__title">Research Technician</h3>
-          <span class="v2-role__pay">Direct-hire Xiangya Hospital staff</span>
+          <span class="v2-role__pay">Regular Xiangya Hospital staff benefits</span>
         </div>
         <dl class="v2-role__meta">
           <dt>Who</dt>
@@ -60,7 +60,7 @@ The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-
           <dt>Bar</dt>
           <dd>Candidates with a first-author SCI paper, or graduates of leading universities and institutes (in China or abroad), are preferred.</dd>
           <dt>Package</dt>
-          <dd>Training in first-rate research thinking and technical skills. Outstanding performers receive additional lab bonuses and gain opportunities for PhD study and international research collaboration and exchange.</dd>
+          <dd>Opportunities for research training and professional skills development. Outstanding performers receive additional lab bonuses and gain opportunities for PhD study and international research collaboration and exchange.</dd>
         </dl>
       </div>
     </div>
@@ -105,7 +105,7 @@ The lab of Prof. Ji Li and Prof. Zhili Deng recruits at every stage — faculty-
           <dt>Eligibility</dt>
           <dd>Open to applicants from clinical medicine or the biomedical sciences and related disciplines — molecular biology, cell biology, immunology, bioinformatics, pharmacy, and similar fields.</dd>
           <dt>Looking for</dt>
-          <dd>A drive to lead an independent project and to publish work that moves a research question forward.</dd>
+          <dd>An interest in conducting independent research.</dd>
         </dl>
       </div>
     </div>
