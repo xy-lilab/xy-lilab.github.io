@@ -16,7 +16,7 @@ Leveraging the extensive clinical resources and patient cohorts of the Departmen
   </div>
   <div class="v2-utility-card">
     <h3>Hair disorder clinical research</h3>
-    <p>Integrating clinical samples from patients with hair loss and hair graying to conduct organ culture, hair follicle regeneration strategies, and clinical trials of novel therapeutics (e.g., multicenter RCTs of JAK inhibitors for alopecia areata).</p>
+    <p>Integrating clinical samples from patients with hair loss and hair graying to conduct organ culture studies, investigate hair follicle regeneration, and run clinical trials of new treatments (e.g., multicenter RCTs of JAK inhibitors for alopecia areata).</p>
   </div>
   <div class="v2-utility-card">
     <h3>Skin aging cohorts</h3>
